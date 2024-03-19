@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Visualização | R para análise de dados</title>
+  <meta name="description" content="Visualização | R para análise de dados" />
+  <meta name="generator" content="bookdown 0.37 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Visualização | R para análise de dados" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Visualização | R para análise de dados" />
+  
+  
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="joins.html"/>
+<link rel="next" href="exercícios.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Apresentação</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#requisitos"><i class="fa fa-check"></i>Requisitos</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#parte-1---introdução-à-linguagem-r-e-processamento-básico-de-dados"><i class="fa fa-check"></i>Parte 1 - Introdução à linguagem R e Processamento Básico de dados</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#parte-2---visualização-de-dados-e-estatística-experimental"><i class="fa fa-check"></i>Parte 2 - Visualização de dados e estatística experimental</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="sobre-o-r.html"><a href="sobre-o-r.html"><i class="fa fa-check"></i>Sobre o R</a>
+<ul>
+<li class="chapter" data-level="" data-path="sobre-o-r.html"><a href="sobre-o-r.html#download-do-r-e-rstudio"><i class="fa fa-check"></i>Download do R e RStudio</a></li>
+</ul></li>
+<li class="part"><span><b>Parte I</b></span></li>
+<li class="chapter" data-level="" data-path="manipulação-de-dados.html"><a href="manipulação-de-dados.html"><i class="fa fa-check"></i>Manipulação de dados</a>
+<ul>
+<li class="chapter" data-level="" data-path="manipulação-de-dados.html"><a href="manipulação-de-dados.html#warm-up"><i class="fa fa-check"></i>Warm-Up</a>
+<ul>
+<li class="chapter" data-level="" data-path="manipulação-de-dados.html"><a href="manipulação-de-dados.html#conhecendo-os-dados"><i class="fa fa-check"></i>Conhecendo os dados</a></li>
+<li class="chapter" data-level="" data-path="manipulação-de-dados.html"><a href="manipulação-de-dados.html#qual-o-lucro-médio-dos-filmes"><i class="fa fa-check"></i>Qual o lucro médio dos filmes?</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="manipulação-de-dados.html"><a href="manipulação-de-dados.html#sobre-o-tidyverse"><i class="fa fa-check"></i>Sobre o Tidyverse</a>
+<ul>
+<li class="chapter" data-level="" data-path="manipulação-de-dados.html"><a href="manipulação-de-dados.html#filter"><i class="fa fa-check"></i>Filter</a></li>
+<li class="chapter" data-level="" data-path="manipulação-de-dados.html"><a href="manipulação-de-dados.html#arrange"><i class="fa fa-check"></i>Arrange</a></li>
+<li class="chapter" data-level="" data-path="manipulação-de-dados.html"><a href="manipulação-de-dados.html#select"><i class="fa fa-check"></i>Select</a></li>
+<li class="chapter" data-level="" data-path="manipulação-de-dados.html"><a href="manipulação-de-dados.html#mutate"><i class="fa fa-check"></i>Mutate</a></li>
+<li class="chapter" data-level="" data-path="manipulação-de-dados.html"><a href="manipulação-de-dados.html#summarise"><i class="fa fa-check"></i>Summarise</a></li>
+<li class="chapter" data-level="" data-path="manipulação-de-dados.html"><a href="manipulação-de-dados.html#operador"><i class="fa fa-check"></i>Operador %&gt;%</a></li>
+<li class="chapter" data-level="" data-path="manipulação-de-dados.html"><a href="manipulação-de-dados.html#gráficos-rápidos"><i class="fa fa-check"></i>Gráficos rápidos</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="joins.html"><a href="joins.html"><i class="fa fa-check"></i>Joins</a></li>
+<li class="part"><span><b>Parte II</b></span></li>
+<li class="chapter" data-level="" data-path="visualização.html"><a href="visualização.html"><i class="fa fa-check"></i>Visualização</a>
+<ul>
+<li class="chapter" data-level="" data-path="visualização.html"><a href="visualização.html#conceitos-básicos"><i class="fa fa-check"></i>Conceitos básicos</a></li>
+<li class="chapter" data-level="" data-path="visualização.html"><a href="visualização.html#layers"><i class="fa fa-check"></i>Layers</a></li>
+<li class="chapter" data-level="" data-path="visualização.html"><a href="visualização.html#os-dados"><i class="fa fa-check"></i>Os dados</a></li>
+<li class="chapter" data-level="" data-path="visualização.html"><a href="visualização.html#a-camada-de-geometria"><i class="fa fa-check"></i>A camada de geometria</a></li>
+<li class="chapter" data-level="" data-path="visualização.html"><a href="visualização.html#a-camada-de-estatísticas"><i class="fa fa-check"></i>A camada de estatísticas</a></li>
+<li class="chapter" data-level="" data-path="visualização.html"><a href="visualização.html#edições-de-eixos"><i class="fa fa-check"></i>Edições de eixos</a></li>
+<li class="chapter" data-level="" data-path="visualização.html"><a href="visualização.html#aesthetics"><i class="fa fa-check"></i>Aesthetics</a></li>
+<li class="chapter" data-level="" data-path="visualização.html"><a href="visualização.html#grupos"><i class="fa fa-check"></i>Grupos</a></li>
+<li class="chapter" data-level="" data-path="visualização.html"><a href="visualização.html#geometrias"><i class="fa fa-check"></i>Geometrias</a>
+<ul>
+<li class="chapter" data-level="" data-path="visualização.html"><a href="visualização.html#histograma-e-densidade"><i class="fa fa-check"></i>Histograma e Densidade</a></li>
+<li class="chapter" data-level="" data-path="visualização.html"><a href="visualização.html#densidade"><i class="fa fa-check"></i>Densidade</a></li>
+<li class="chapter" data-level="" data-path="visualização.html"><a href="visualização.html#boxplot"><i class="fa fa-check"></i>Boxplot</a></li>
+<li class="chapter" data-level="" data-path="visualização.html"><a href="visualização.html#vilolin-e-dotplot"><i class="fa fa-check"></i>Vilolin e dotplot</a></li>
+<li class="chapter" data-level="" data-path="visualização.html"><a href="visualização.html#barras"><i class="fa fa-check"></i>Barras</a></li>
+<li class="chapter" data-level="" data-path="visualização.html"><a href="visualização.html#texto"><i class="fa fa-check"></i>Texto</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="visualização.html"><a href="visualização.html#escalas"><i class="fa fa-check"></i>Escalas</a></li>
+<li class="chapter" data-level="" data-path="visualização.html"><a href="visualização.html#scale_xy_continuous"><i class="fa fa-check"></i>scale_x|y_continuous</a></li>
+<li class="chapter" data-level="" data-path="visualização.html"><a href="visualização.html#escalas-de-cor"><i class="fa fa-check"></i>Escalas de cor</a></li>
+<li class="chapter" data-level="" data-path="visualização.html"><a href="visualização.html#facets"><i class="fa fa-check"></i>Facets</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="exercícios.html"><a href="exercícios.html"><i class="fa fa-check"></i>Exercícios</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R para análise de dados</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="visualização" class="section level1 unnumbered hasAnchor">
+<h1>Visualização<a href="visualização.html#visualização" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>O <code>ggplot2</code>é o pacote mais utilizado para criação de gráficos no R. Ele implementa a Gramática dos Gráficos proposta por Leland Wilkinson em seu livro <a href="https://www.amazon.com/Grammar-Graphics-Statistics-Computing/dp/0387245448">The Grammar of Graphics</a>. A ideia é que há uma gramática racional e computacional para a composição de gráficos estatísticos. Ao controlar a gramática, você pode gerar um grande conjunto de gráficos cuidadosamente construídos a partir de um conjunto relativamente pequeno de operações.</p>
+<p>Existem muitos materiais e cursos sobre como criar gráficos com o ggplot2. Basta um simples google sobre o assunto ou problema que você tem e rapidamente vai aparecer uma pergunta semelhante e várias respostas assunto. Como padrão, a documentação do pacote pode ser consultada, bem como diversos livros sobre o assunto. Recomendo o site do pacotes <a href="https://ggplot2.tidyverse.org/">ggplot2</a> e o <a href="https://www.amazon.com.br/dp/B01GVCRF6M/">livro do autor</a></p>
+<div id="conceitos-básicos" class="section level2 unnumbered hasAnchor">
+<h2>Conceitos básicos<a href="visualização.html#conceitos-básicos" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Existem alguns conceitos básicos em torno desde universo de gráficos. Em primeiro lugar, os gráficos são construídos em camadas (layers). Cada componente do gráfico, a partir dos dados fornecidos, está amarrado ao sistema de coordenadas e este por sua vez, está condicionado aos resumos estatísticos, rótulos e escalas. Portanto, gráficos expressos são construídos com poucos comandos, mas com definições padrões. Para criar gráficos personalizados e de maior qualidade é preciso adicionar algumas funções… mas fique tranquilo, dificilmente vai passar de 7 camadas.</p>
+<p>As propriedades gráficas que codificam os dados são dimensões tratadas como <em>aesthetic</em> no ggplot2, destacando:</p>
+<ul>
+<li>x</li>
+<li>y</li>
+<li>size</li>
+<li>shape</li>
+<li>color</li>
+<li>fill</li>
+</ul>
+<p>Os elementos gráficos são as geometrias, como:</p>
+<ul>
+<li>point</li>
+<li>line</li>
+<li>segment</li>
+<li>bar/col</li>
+<li>text</li>
+<li>area</li>
+<li>hitogram</li>
+<li>density</li>
+</ul>
+<p>Você também vai querer adicionar estatísticas que resumem seus dados, e o pacote possibilita algumas delas:</p>
+<ul>
+<li>smooth</li>
+<li>mean/median</li>
+<li>function</li>
+</ul>
+<p>As dimensões (aesthetic), geometrias e resumos estatísticos constituem as mais importantes camadas de gráfico, mas há uma série de outras características que você vai querer ajustar. As mais comuns são:</p>
+<ul>
+<li>Eixo x ou y em escala logarítmica</li>
+<li>Paletas de cores personalizadas</li>
+<li>Formas de pontos personalizado, ou tipos de linha</li>
+</ul>
+<p>As seções seguintes são dedicadas a alguns destes elementos básicos ggplot2.</p>
+</div>
+<div id="layers" class="section level2 unnumbered hasAnchor">
+<h2>Layers<a href="visualização.html#layers" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Iremos criar gráficos em camadas. A estratificação de elementos é talvez o aspecto mais poderoso do ggplot2. Isso significa que gráficos relativamente complexos são construídos com pequenas peças, que você pode adicionar ou remover de forma iterativa.</p>
+</div>
+<div id="os-dados" class="section level2 unnumbered hasAnchor">
+<h2>Os dados<a href="visualização.html#os-dados" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>O primeiro argumento da função <code>ggplot()</code> é um <code>data.frame</code>, e seu segundo argumento é <code>aes()</code>. Você nunca vai usar <code>aes()</code> em qualquer outro contexto, exceto dentro de outras funções do ggplot2, por isso talvez seja melhor não pensar em <code>aes()</code> como função individual, mas sim como uma forma especial de definir as dimensões dos gráficos.</p>
+<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="visualização.html#cb87-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb87-2"><a href="visualização.html#cb87-2" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb87-3"><a href="visualização.html#cb87-3" tabindex="-1"></a></span>
+<span id="cb87-4"><a href="visualização.html#cb87-4" tabindex="-1"></a>tab_inv <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">&quot;input/TC5005_2017.xlsx&quot;</span>)</span>
+<span id="cb87-5"><a href="visualização.html#cb87-5" tabindex="-1"></a></span>
+<span id="cb87-6"><a href="visualização.html#cb87-6" tabindex="-1"></a><span class="fu">ggplot</span>(tab_inv, <span class="fu">aes</span>(<span class="at">x =</span> dap, <span class="at">y =</span> h))</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-40-1.png" width="672" /></p>
+<p>Veja que os dados e as dimensões dos dados já foram informados, entretanto não nada no gráfico criado por não temos uma geometria definida.</p>
+<p>Cada layer tem uma base de dados. Você pode indicar os dados na função principal <code>ggplot()</code> ou nos layers específicos. O mesmo ocorre para a definição das dimensões com a função <code>aes()</code>.</p>
+</div>
+<div id="a-camada-de-geometria" class="section level2 unnumbered hasAnchor">
+<h2>A camada de geometria<a href="visualização.html#a-camada-de-geometria" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>O passo seguinte, depois de definir os dados e as dimensões, é adicionar a geometrias. Iremos discutir geometrias em mais detalhe abaixo, mas por agora, vamos adicionar a mais simples de todas: os pontos.</p>
+<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="visualização.html#cb88-1" tabindex="-1"></a><span class="fu">ggplot</span>(tab_inv,  <span class="fu">aes</span>(<span class="at">x =</span> dap, <span class="at">y =</span> h)) <span class="sc">+</span></span>
+<span id="cb88-2"><a href="visualização.html#cb88-2" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
+<pre><code>## Warning: Removed 1783 rows containing missing
+## values (`geom_point()`).</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-41-1.png" width="672" /></p>
+<p>Cada camada é feita por uma função. Algumas não precisarão de argumentos pois será utilizado o <em>default</em>. No exemplo anterior, fizemos um gráfico e adicionamos a camada de ponto <code>geom_point()</code>, por padrão, serão mostrados pontos pretos e sólidos de tamanho 1.</p>
+<p>Caso você queira alterar o formato do ponto, basta especificar no argumento indicado.</p>
+<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="visualização.html#cb90-1" tabindex="-1"></a><span class="fu">ggplot</span>(tab_inv,  <span class="fu">aes</span>(<span class="at">x =</span> dap, <span class="at">y =</span> h)) <span class="sc">+</span></span>
+<span id="cb90-2"><a href="visualização.html#cb90-2" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">shape =</span> <span class="dv">2</span>)</span></code></pre></div>
+<pre><code>## Warning: Removed 1783 rows containing missing
+## values (`geom_point()`).</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-42-1.png" width="672" /></p>
+<p>Ou, se quiséssemos usar pontos vermelhos e maiores, poderíamos definir:</p>
+<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="visualização.html#cb92-1" tabindex="-1"></a><span class="fu">ggplot</span>(tab_inv,  <span class="fu">aes</span>(<span class="at">x =</span> dap, <span class="at">y =</span> h)) <span class="sc">+</span></span>
+<span id="cb92-2"><a href="visualização.html#cb92-2" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">&quot;red&quot;</span>, <span class="at">size =</span> <span class="dv">3</span>)</span></code></pre></div>
+<pre><code>## Warning: Removed 1783 rows containing missing
+## values (`geom_point()`).</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-43-1.png" width="672" /></p>
+<p>Como padrão, o ggplot2 cria um fundo cinza e linhas de grades brancas. Tem uma explicação plausível para isso e na maioria das vezes é bem útil, mas de forma geral não estamos acostumados a esse tema e isso pode incomodar. Mas fique tranquilo, isso é perfeitamente ajustável, vamos ver a seguir como fazê-lo.</p>
+<p>Outro padrão é o nome dos eixos. Ele é correspondente à variável indicada, mas também pode ser alterado utilizando a função <code>labs</code>.</p>
+<p>Finalmente, note que nós não precisamos dizer em <code>geom_point()</code> quais são as dimensões do gráfico. Já fizemos isso na função principal. Os layer herdam essas definições da função principal e por isso não precisamos ficar redefinindo a todo momento.</p>
+</div>
+<div id="a-camada-de-estatísticas" class="section level2 unnumbered hasAnchor">
+<h2>A camada de estatísticas<a href="visualização.html#a-camada-de-estatísticas" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Adicionar uma linha de tendência uma suavização é muito simples, veja o exemplo.</p>
+<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="visualização.html#cb94-1" tabindex="-1"></a><span class="fu">ggplot</span>(tab_inv,  <span class="fu">aes</span>(<span class="at">x =</span> dap, <span class="at">y =</span> h)) <span class="sc">+</span></span>
+<span id="cb94-2"><a href="visualização.html#cb94-2" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>)</span></code></pre></div>
+<pre><code>## `geom_smooth()` using formula = &#39;y ~
+## x&#39;</code></pre>
+<pre><code>## Warning: Removed 1783 rows containing
+## non-finite values (`stat_smooth()`).</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-44-1.png" width="672" /></p>
+<p>Nesse gráfico, foi ajustado uma regressão linear com um intervalo de confiança de 95%.</p>
+<p>Uma coisa importante a entender é que não é necessário incluir os pontos, podemos apresentar somente a linha de tendência.</p>
+<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="visualização.html#cb97-1" tabindex="-1"></a><span class="fu">ggplot</span>(tab_inv,  <span class="fu">aes</span>(<span class="at">x =</span> dap, <span class="at">y =</span> h)) <span class="sc">+</span></span>
+<span id="cb97-2"><a href="visualização.html#cb97-2" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>) <span class="sc">+</span></span>
+<span id="cb97-3"><a href="visualização.html#cb97-3" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
+<pre><code>## `geom_smooth()` using formula = &#39;y ~
+## x&#39;</code></pre>
+<pre><code>## Warning: Removed 1783 rows containing
+## non-finite values (`stat_smooth()`).</code></pre>
+<pre><code>## Warning: Removed 1783 rows containing missing
+## values (`geom_point()`).</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-45-1.png" width="672" /></p>
+</div>
+<div id="edições-de-eixos" class="section level2 unnumbered hasAnchor">
+<h2>Edições de eixos<a href="visualização.html#edições-de-eixos" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Podemos alterar o nome dos eixos e ainda adicionar título, subtítulo e fonte ao gráfico.</p>
+<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="visualização.html#cb101-1" tabindex="-1"></a><span class="fu">ggplot</span>(tab_inv,  <span class="fu">aes</span>(<span class="at">x =</span> dap, <span class="at">y =</span> h)) <span class="sc">+</span></span>
+<span id="cb101-2"><a href="visualização.html#cb101-2" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb101-3"><a href="visualização.html#cb101-3" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb101-4"><a href="visualização.html#cb101-4" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Experimento TC5005&quot;</span>,</span>
+<span id="cb101-5"><a href="visualização.html#cb101-5" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">&quot;Fazenda Penha&quot;</span>,</span>
+<span id="cb101-6"><a href="visualização.html#cb101-6" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">&quot;Suzano SA&quot;</span>,</span>
+<span id="cb101-7"><a href="visualização.html#cb101-7" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;CAP (cm)&quot;</span>,</span>
+<span id="cb101-8"><a href="visualização.html#cb101-8" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Altura (m)&quot;</span></span>
+<span id="cb101-9"><a href="visualização.html#cb101-9" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb101-10"><a href="visualização.html#cb101-10" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
+<pre><code>## Warning: Removed 1783 rows containing missing
+## values (`geom_point()`).</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-46-1.png" width="672" /></p>
+</div>
+<div id="aesthetics" class="section level2 unnumbered hasAnchor">
+<h2>Aesthetics<a href="visualização.html#aesthetics" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>No ggplot2, <em>aesthetic</em> são os elementos gráficos que representam as dimensões dos dados, e que são definidos com <code>aes()</code>. Em certa medida, a dimensão que você precisa para definir depende das geometrias que você deseja utilizar. Por exemplo, segmentos de linha tem propriedades geométricas diferentes de pontos. Mas de maneira geral, essa padronização não é problemática.</p>
+<ul>
+<li><strong>x</strong>: localização do eixo-X.</li>
+<li><strong>y</strong>: localização do eixo y.</li>
+<li><strong>color</strong>: A cor das linhas, pontos, e as fronteiras externas das geometrias (polígonos, barras, etc.).</li>
+<li><strong>fill</strong> : A cor de preenchimento das geometrias.</li>
+<li><strong>size</strong>: O tamanho dos pontos.</li>
+<li><strong>shape</strong>: Específico para pontos, define a forma dele.</li>
+<li><strong>linetype</strong>: Específico para linhas, define o tipo de linha, caminho, ou borda de uma geometria.</li>
+<li><strong>alpha</strong>: Isto define a opacidade de qualquer propriedade geométrica. É mais utilizada quando temos sobreposição de pontos ou linhas e queremos enxergar o que está por de trás.</li>
+<li><strong>xend</strong>, <strong>yend</strong>: Você vai usá-los raramente, quando criar um segmento de linha, ou seta. O início do segmento de linha será localizado o x e y, e a extremidade do segmento de linha será definida em xend, yend.</li>
+</ul>
+<p>Se aplicarmos a dimensão de cor em função da variável <code>Cod</code>, vamos notar que o <code>ggplot2</code> entendeu que se trata de números e por isso adicionou uma escala contínua de cor na legenda. Não está certo, mas é o default.</p>
+<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="visualização.html#cb103-1" tabindex="-1"></a><span class="fu">ggplot</span>(tab_inv,  <span class="fu">aes</span>(<span class="at">x =</span> dap, <span class="at">y =</span> h, <span class="at">color =</span> cod1)) <span class="sc">+</span></span>
+<span id="cb103-2"><a href="visualização.html#cb103-2" tabindex="-1"></a>  <span class="fu">geom_point</span>() </span></code></pre></div>
+<pre><code>## Warning: Removed 1783 rows containing missing
+## values (`geom_point()`).</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-47-1.png" width="672" /></p>
+<p>O ggplot2 gerou automaticamente uma paleta de cores para os dados e criou uma legenda. Tal como acontece com tudo, a paleta de cores também é ajustável, o que será discutido em mais detalhe abaixo. O padrão de cores do ggplot2 é bastante inteligente. Cada cor é equidistante em torno de um círculo de cor HSL, e têm igual luminância. A ideia é que nenhuma categoria tenha maior destaque que outra, em contrapartida ela pode ser um problema para leitores daltônicos.</p>
+<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="visualização.html#cb105-1" tabindex="-1"></a><span class="fu">ggplot</span>(tab_inv,  <span class="fu">aes</span>(<span class="at">x =</span> dap, <span class="at">y =</span> h)) <span class="sc">+</span></span>
+<span id="cb105-2"><a href="visualização.html#cb105-2" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">&quot;red&quot;</span>) </span></code></pre></div>
+<pre><code>## Warning: Removed 1783 rows containing missing
+## values (`geom_point()`).</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-48-1.png" width="672" /></p>
+<p>Neste momento você pode notar a diferença de indicar a cor fora do <code>aes()</code> não gera legenda e se aplica a todos os pontos. Quando a cor representa uma dimensão dos nossos dados, seja uma escala discreta ou contínua, ela deve ser indicada dentro da função <code>aes()</code> em conjunto com a variável que definirá a dimensão.</p>
+</div>
+<div id="grupos" class="section level2 unnumbered hasAnchor">
+<h2>Grupos<a href="visualização.html#grupos" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Vamos criar um gráfico com uma linha de tendência por ano. O parâmetro <code>se = FALSE</code> é para retirar o intervalo de confiança da linha de tendência e facilita a visualização.</p>
+<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="visualização.html#cb107-1" tabindex="-1"></a><span class="fu">ggplot</span>(tab_inv,  <span class="fu">aes</span>(<span class="at">x =</span> dap, <span class="at">y =</span> h, <span class="at">color =</span> clone)) <span class="sc">+</span></span>
+<span id="cb107-2"><a href="visualização.html#cb107-2" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb107-3"><a href="visualização.html#cb107-3" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<pre><code>## `geom_smooth()` using formula = &#39;y ~
+## x&#39;</code></pre>
+<pre><code>## Warning: Removed 1783 rows containing
+## non-finite values (`stat_smooth()`).</code></pre>
+<pre><code>## Warning: Removed 1783 rows containing missing
+## values (`geom_point()`).</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-49-1.png" width="672" /></p>
+<p>Como a dimensão cor foi definida na função principal, todos layers herdaram essa informação. Mas e se quisermos um gráfico com pontos coloridos, mas só uma linha de tendência? Simples, vamos dar a dimensão de cor somente para o layer de pontos.</p>
+<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="visualização.html#cb111-1" tabindex="-1"></a><span class="fu">ggplot</span>(tab_inv,  <span class="fu">aes</span>(<span class="at">x =</span> dap, <span class="at">y =</span> h)) <span class="sc">+</span></span>
+<span id="cb111-2"><a href="visualização.html#cb111-2" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> clone)) <span class="sc">+</span></span>
+<span id="cb111-3"><a href="visualização.html#cb111-3" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>)</span></code></pre></div>
+<pre><code>## `geom_smooth()` using formula = &#39;y ~
+## x&#39;</code></pre>
+<pre><code>## Warning: Removed 1783 rows containing
+## non-finite values (`stat_smooth()`).</code></pre>
+<pre><code>## Warning: Removed 1783 rows containing missing
+## values (`geom_point()`).</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-50-1.png" width="672" /></p>
+<p>É importante lembrar que não é só a dimensão de cor que gera sub-agrupamentos no gráfico. Se utilizarmos a forma para diferenciar a variável, essa definição também será herdade nos layers subsequentes.</p>
+<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="visualização.html#cb115-1" tabindex="-1"></a><span class="fu">ggplot</span>(tab_inv,  <span class="fu">aes</span>(<span class="at">x =</span> dap, <span class="at">y =</span> h, <span class="at">shape =</span> clone)) <span class="sc">+</span></span>
+<span id="cb115-2"><a href="visualização.html#cb115-2" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
+<pre><code>## Warning: The shape palette can deal with a
+## maximum of 6 discrete values because
+## more than 6 becomes difficult to
+## discriminate
+## ℹ you have requested 7 values.
+##   Consider specifying shapes manually
+##   if you need that many have them.</code></pre>
+<pre><code>## Warning: Removed 1832 rows containing missing
+## values (`geom_point()`).</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-51-1.png" width="672" /></p>
+<p>A criação de gráficos com cores é uma atividade comum em muitas situações. Podemos definir se um gráfico será colorido de duas formas, o preenchimento interno da geometria ou a linha externa. Para o primeiro, utilizamos o argumento <code>fill = &lt;variável&gt;</code>e para o segundo <code>color = &lt;variável&gt;</code>. Note que as variáveis podem ser contínuas ou discretas para ambos os casos.</p>
+<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="visualização.html#cb118-1" tabindex="-1"></a>tab_resumo_clone <span class="ot">&lt;-</span> tab_inv <span class="sc">%&gt;%</span> </span>
+<span id="cb118-2"><a href="visualização.html#cb118-2" tabindex="-1"></a>  <span class="fu">group_by</span>(clone) <span class="sc">%&gt;%</span></span>
+<span id="cb118-3"><a href="visualização.html#cb118-3" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb118-4"><a href="visualização.html#cb118-4" tabindex="-1"></a>    <span class="at">h =</span> <span class="fu">mean</span>(h, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb118-5"><a href="visualização.html#cb118-5" tabindex="-1"></a>    <span class="at">dap =</span> <span class="fu">mean</span>(dap, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb118-6"><a href="visualização.html#cb118-6" tabindex="-1"></a>    <span class="at">n_arv =</span> <span class="fu">n</span>(),</span>
+<span id="cb118-7"><a href="visualização.html#cb118-7" tabindex="-1"></a>    <span class="at">n_falha =</span> <span class="fu">sum</span>(<span class="fu">if_else</span>(cod1 <span class="sc">==</span> <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>), <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb118-8"><a href="visualização.html#cb118-8" tabindex="-1"></a>    <span class="at">p_falha =</span> (n_falha <span class="sc">/</span> n_arv) <span class="sc">*</span> <span class="dv">100</span></span>
+<span id="cb118-9"><a href="visualização.html#cb118-9" tabindex="-1"></a>  )</span>
+<span id="cb118-10"><a href="visualização.html#cb118-10" tabindex="-1"></a></span>
+<span id="cb118-11"><a href="visualização.html#cb118-11" tabindex="-1"></a><span class="fu">ggplot</span>(tab_resumo_clone, <span class="fu">aes</span>(dap, clone)) <span class="sc">+</span></span>
+<span id="cb118-12"><a href="visualização.html#cb118-12" tabindex="-1"></a>  <span class="fu">geom_col</span>()</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-52-1.png" width="672" /></p>
+<p>Se quisermos colorir as barras, o primeiro instinto seria provavelmente para definir <code>color = Esp</code>. Mas este argumento considera apenas o contorno das figuras bidimensionais.</p>
+<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="visualização.html#cb119-1" tabindex="-1"></a><span class="fu">ggplot</span>(tab_resumo_clone, <span class="fu">aes</span>(clone, dap, <span class="at">color =</span> clone)) <span class="sc">+</span></span>
+<span id="cb119-2"><a href="visualização.html#cb119-2" tabindex="-1"></a>  <span class="fu">geom_col</span>()</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-53-1.png" width="672" /></p>
+<p>O preenchimento é feito utilizando o argumento <code>fill = Esp</code>.</p>
+<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="visualização.html#cb120-1" tabindex="-1"></a><span class="fu">ggplot</span>(tab_resumo_clone, <span class="fu">aes</span>(clone, dap, <span class="at">fill =</span> clone)) <span class="sc">+</span></span>
+<span id="cb120-2"><a href="visualização.html#cb120-2" tabindex="-1"></a>  <span class="fu">geom_col</span>()</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-54-1.png" width="672" /></p>
+</div>
+<div id="geometrias" class="section level2 unnumbered hasAnchor">
+<h2>Geometrias<a href="visualização.html#geometrias" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Até o momento, nós usamos as seguintes geometrias:</p>
+<ul>
+<li>geom_point()</li>
+<li>geom_smooth()</li>
+<li>geom_col()</li>
+</ul>
+<p>Todas as geometrias começam com <code>geom_*</code>, esta é a lista completa das geometrias disponível pelo ggplot2.</p>
+<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="visualização.html#cb121-1" tabindex="-1"></a><span class="fu">apropos</span>(<span class="st">&quot;^geom_&quot;</span>)</span></code></pre></div>
+<pre><code>##  [1] &quot;geom_abline&quot;            &quot;geom_area&quot;              &quot;geom_bar&quot;              
+##  [4] &quot;geom_bin_2d&quot;            &quot;geom_bin2d&quot;             &quot;geom_blank&quot;            
+##  [7] &quot;geom_boxplot&quot;           &quot;geom_col&quot;               &quot;geom_contour&quot;          
+## [10] &quot;geom_contour_filled&quot;    &quot;geom_count&quot;             &quot;geom_crossbar&quot;         
+## [13] &quot;geom_curve&quot;             &quot;geom_density&quot;           &quot;geom_density_2d&quot;       
+## [16] &quot;geom_density_2d_filled&quot; &quot;geom_density2d&quot;         &quot;geom_density2d_filled&quot; 
+## [19] &quot;geom_dotplot&quot;           &quot;geom_errorbar&quot;          &quot;geom_errorbarh&quot;        
+## [22] &quot;geom_freqpoly&quot;          &quot;geom_function&quot;          &quot;geom_hex&quot;              
+## [25] &quot;geom_histogram&quot;         &quot;geom_hline&quot;             &quot;geom_jitter&quot;           
+## [28] &quot;geom_label&quot;             &quot;geom_line&quot;              &quot;geom_linerange&quot;        
+## [31] &quot;geom_map&quot;               &quot;geom_path&quot;              &quot;geom_point&quot;            
+## [34] &quot;geom_pointrange&quot;        &quot;geom_polygon&quot;           &quot;geom_qq&quot;               
+## [37] &quot;geom_qq_line&quot;           &quot;geom_quantile&quot;          &quot;geom_raster&quot;           
+## [40] &quot;geom_rect&quot;              &quot;geom_ribbon&quot;            &quot;geom_rug&quot;              
+## [43] &quot;geom_segment&quot;           &quot;geom_sf&quot;                &quot;geom_sf_label&quot;         
+## [46] &quot;geom_sf_text&quot;           &quot;geom_smooth&quot;            &quot;geom_spoke&quot;            
+## [49] &quot;geom_step&quot;              &quot;geom_text&quot;              &quot;geom_tile&quot;             
+## [52] &quot;geom_violin&quot;            &quot;geom_vline&quot;</code></pre>
+<p>Esta é uma lista bastante extensa, e não iremos ver todo seu conteúdo hoje. Mas podemos iremos exemplificar alguns casos.</p>
+<div id="histograma-e-densidade" class="section level3 unnumbered hasAnchor">
+<h3>Histograma e Densidade<a href="visualização.html#histograma-e-densidade" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>O histograma é um gráfico univariado bastante comum no meio científico. Sua principal função é apresentar a distribuição de frequências dos dados.</p>
+<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="visualização.html#cb123-1" tabindex="-1"></a><span class="fu">ggplot</span>(tab_inv, <span class="fu">aes</span>(dap)) <span class="sc">+</span></span>
+<span id="cb123-2"><a href="visualização.html#cb123-2" tabindex="-1"></a>  <span class="fu">geom_histogram</span>()</span></code></pre></div>
+<pre><code>## `stat_bin()` using `bins = 30`. Pick
+## better value with `binwidth`.</code></pre>
+<pre><code>## Warning: Removed 305 rows containing non-finite
+## values (`stat_bin()`).</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-56-1.png" width="672" /></p>
+</div>
+<div id="densidade" class="section level3 unnumbered hasAnchor">
+<h3>Densidade<a href="visualização.html#densidade" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Visualizar a distribuição de frequências também é um recurso muito interessante para entender os nossos dados. Podemos fazê-lo através de um histograma eu de gráfico de densidade de frequências.</p>
+<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="visualização.html#cb126-1" tabindex="-1"></a><span class="fu">ggplot</span>(tab_inv, <span class="fu">aes</span>(h)) <span class="sc">+</span></span>
+<span id="cb126-2"><a href="visualização.html#cb126-2" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">fill =</span> <span class="st">&quot;grey&quot;</span>)</span></code></pre></div>
+<pre><code>## Warning: Removed 1783 rows containing
+## non-finite values (`stat_density()`).</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-57-1.png" width="672" /></p>
+<p>Podemos identificar a distribuição do Esp através de cores.</p>
+<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="visualização.html#cb128-1" tabindex="-1"></a><span class="fu">ggplot</span>(tab_inv, <span class="fu">aes</span>(h, <span class="at">fill =</span> clone)) <span class="sc">+</span></span>
+<span id="cb128-2"><a href="visualização.html#cb128-2" tabindex="-1"></a>  <span class="fu">geom_density</span>()</span></code></pre></div>
+<pre><code>## Warning: Removed 1783 rows containing
+## non-finite values (`stat_density()`).</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-58-1.png" width="672" /></p>
+<p>Entretanto o padrão da função <code>geom_density()</code> é usar <code>position = "identity"</code>. Isso significa que pode haver (como de fato acontece) sobreposição das curvas. Uma alternativa rápida é colocar opacidade ao preenchimento para poder ver através das curvas.</p>
+<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="visualização.html#cb130-1" tabindex="-1"></a><span class="fu">ggplot</span>(tab_inv, <span class="fu">aes</span>(h, <span class="at">fill =</span> clone, <span class="at">color =</span> clone)) <span class="sc">+</span></span>
+<span id="cb130-2"><a href="visualização.html#cb130-2" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">alpha =</span> <span class="fl">0.3</span>)</span></code></pre></div>
+<pre><code>## Warning: Removed 1783 rows containing
+## non-finite values (`stat_density()`).</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-59-1.png" width="672" /></p>
+<p>Caso o interesse seja ver a contribuição de cada sexo para a distribuição total do peso, iremos trabalhar com o parâmetro <code>position = "stack"</code></p>
+<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="visualização.html#cb132-1" tabindex="-1"></a><span class="fu">ggplot</span>(tab_inv, <span class="fu">aes</span>(h, <span class="at">fill =</span> clone, <span class="at">color =</span> clone)) <span class="sc">+</span></span>
+<span id="cb132-2"><a href="visualização.html#cb132-2" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">position =</span> <span class="st">&quot;stack&quot;</span>)</span></code></pre></div>
+<pre><code>## Warning: Removed 1783 rows containing
+## non-finite values (`stat_density()`).</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-60-1.png" width="672" /></p>
+<p>A próxima variação é tratar os valores em porcentagem, do mesmo modo que fizemos com as barras.</p>
+<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="visualização.html#cb134-1" tabindex="-1"></a><span class="fu">ggplot</span>(tab_inv, <span class="fu">aes</span>(h, <span class="at">fill =</span> clone, <span class="at">color =</span> clone)) <span class="sc">+</span></span>
+<span id="cb134-2"><a href="visualização.html#cb134-2" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">position =</span> <span class="st">&quot;fill&quot;</span>)</span></code></pre></div>
+<pre><code>## Warning: Removed 1783 rows containing
+## non-finite values (`stat_density()`).</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-61-1.png" width="672" /></p>
+</div>
+<div id="boxplot" class="section level3 unnumbered hasAnchor">
+<h3>Boxplot<a href="visualização.html#boxplot" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>O boxplot é um gráfico muito útil para demonstrar a distribuição dos dados. Seu objetivo é evidenciar os quartis e outliers.</p>
+<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb136-1"><a href="visualização.html#cb136-1" tabindex="-1"></a><span class="fu">ggplot</span>(tab_inv, <span class="fu">aes</span>(clone, h)) <span class="sc">+</span></span>
+<span id="cb136-2"><a href="visualização.html#cb136-2" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()</span></code></pre></div>
+<pre><code>## Warning: Removed 1783 rows containing
+## non-finite values (`stat_boxplot()`).</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-62-1.png" width="672" /></p>
+<p>Entretanto não vemos os pontos e muitas vezes o gráfico pode nos enganar pois não vemos quantos pontos cada fator tem de verdade. Como alternativa a isto, podemos plotar os pontos em conjunto.</p>
+<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="visualização.html#cb138-1" tabindex="-1"></a><span class="fu">ggplot</span>(tab_inv, <span class="fu">aes</span>(clone, h)) <span class="sc">+</span></span>
+<span id="cb138-2"><a href="visualização.html#cb138-2" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb138-3"><a href="visualização.html#cb138-3" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
+<pre><code>## Warning: Removed 1783 rows containing
+## non-finite values (`stat_boxplot()`).</code></pre>
+<pre><code>## Warning: Removed 1783 rows containing missing
+## values (`geom_point()`).</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-63-1.png" width="672" /></p>
+<p>Entretanto, mais uma vez o gráfico pode nos enganar pois a sobreposição dos pontos esconde a verdadeira quantidade. A alternativa para esta situação é utilizar a função <code>jitter()</code>, que adiciona uma variação aleatória aos pontos transformando-os em uma massa de pontos. Para não haver duplicidades nos outliers, podemos retirara-los do boxplot.</p>
+<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb141-1"><a href="visualização.html#cb141-1" tabindex="-1"></a><span class="fu">ggplot</span>(tab_inv, <span class="fu">aes</span>(clone, h)) <span class="sc">+</span></span>
+<span id="cb141-2"><a href="visualização.html#cb141-2" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">outlier.color =</span> <span class="cn">NA</span>) <span class="sc">+</span></span>
+<span id="cb141-3"><a href="visualização.html#cb141-3" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(</span>
+<span id="cb141-4"><a href="visualização.html#cb141-4" tabindex="-1"></a>    <span class="at">width =</span> <span class="fl">0.1</span>,</span>
+<span id="cb141-5"><a href="visualização.html#cb141-5" tabindex="-1"></a>    <span class="at">alpha =</span> <span class="fl">0.5</span></span>
+<span id="cb141-6"><a href="visualização.html#cb141-6" tabindex="-1"></a>  )</span></code></pre></div>
+<pre><code>## Warning: Removed 1783 rows containing
+## non-finite values (`stat_boxplot()`).</code></pre>
+<pre><code>## Warning: Removed 1783 rows containing missing
+## values (`geom_point()`).</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-64-1.png" width="672" /></p>
+</div>
+<div id="vilolin-e-dotplot" class="section level3 unnumbered hasAnchor">
+<h3>Vilolin e dotplot<a href="visualização.html#vilolin-e-dotplot" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Para os que não gostam ou não entendem o boxplot, uma alternativa de gráfico que expressa a mesma ideia é o violin plot. O gráfico consiste em uma curva de densidade simétrica para cada fator.</p>
+<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="visualização.html#cb144-1" tabindex="-1"></a><span class="fu">ggplot</span>(tab_inv, <span class="fu">aes</span>(clone, dap)) <span class="sc">+</span></span>
+<span id="cb144-2"><a href="visualização.html#cb144-2" tabindex="-1"></a>  <span class="fu">geom_violin</span>()</span></code></pre></div>
+<pre><code>## Warning: Removed 305 rows containing non-finite
+## values (`stat_ydensity()`).</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-65-1.png" width="672" /></p>
+<p>Podemos ainda adicionar os pontos para ter uma noção de quantidade.</p>
+<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="visualização.html#cb146-1" tabindex="-1"></a><span class="fu">ggplot</span>(tab_inv, <span class="fu">aes</span>(clone, dap)) <span class="sc">+</span></span>
+<span id="cb146-2"><a href="visualização.html#cb146-2" tabindex="-1"></a>  <span class="fu">geom_violin</span>() <span class="sc">+</span></span>
+<span id="cb146-3"><a href="visualização.html#cb146-3" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">alpha =</span> <span class="fl">0.3</span>, <span class="at">width =</span> <span class="fl">0.1</span>)</span></code></pre></div>
+<pre><code>## Warning: Removed 305 rows containing non-finite
+## values (`stat_ydensity()`).</code></pre>
+<pre><code>## Warning: Removed 305 rows containing missing
+## values (`geom_point()`).</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-66-1.png" width="672" /></p>
+</div>
+<div id="barras" class="section level3 unnumbered hasAnchor">
+<h3>Barras<a href="visualização.html#barras" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Para demonstrar como os diferentes tipos de agrupamento de barras funcionam, vamos criar um gráfico que possui contagem de diferentes categorias por fator.</p>
+<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="visualização.html#cb149-1" tabindex="-1"></a><span class="fu">ggplot</span>(tab_resumo_clone, <span class="fu">aes</span>(clone, dap)) <span class="sc">+</span></span>
+<span id="cb149-2"><a href="visualização.html#cb149-2" tabindex="-1"></a>  <span class="fu">geom_col</span>()</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-67-1.png" width="672" /></p>
+<p>Podemos adicionar a dimensão de color para verificar a diferença nos dado</p>
+<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="visualização.html#cb150-1" tabindex="-1"></a>tab_resumo_clone <span class="sc">%&gt;%</span> </span>
+<span id="cb150-2"><a href="visualização.html#cb150-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(clone, dap, <span class="at">fill =</span> n_falha)) <span class="sc">+</span></span>
+<span id="cb150-3"><a href="visualização.html#cb150-3" tabindex="-1"></a>    <span class="fu">geom_col</span>()</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-68-1.png" width="672" /></p>
+</div>
+<div id="texto" class="section level3 unnumbered hasAnchor">
+<h3>Texto<a href="visualização.html#texto" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Adição de texto e rótulos ao gráfico em forma de geometria. Caso queira inserir uma anotação, utiliza <code>annotate()</code>. Uma questão especial Há uma estético especial apenas para <code>geom_text()</code> ou <code>geom_label()</code> chamadas label, que define a coluna que deve ser utilizada como marcador de texto.</p>
+<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb151-1"><a href="visualização.html#cb151-1" tabindex="-1"></a><span class="fu">ggplot</span>(tab_inv, <span class="fu">aes</span>(dap, h, <span class="at">label =</span> cod1)) <span class="sc">+</span></span>
+<span id="cb151-2"><a href="visualização.html#cb151-2" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb151-3"><a href="visualização.html#cb151-3" tabindex="-1"></a>    <span class="fu">geom_label</span>() <span class="sc">+</span></span>
+<span id="cb151-4"><a href="visualização.html#cb151-4" tabindex="-1"></a>    <span class="fu">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="dv">15</span>, <span class="dv">10</span>, <span class="at">label =</span> <span class="st">&quot;Este é um comentário&quot;</span>)</span></code></pre></div>
+<pre><code>## Warning: Removed 1783 rows containing missing
+## values (`geom_point()`).</code></pre>
+<pre><code>## Warning: Removed 1959 rows containing missing
+## values (`geom_label()`).</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-69-1.png" width="672" /></p>
+</div>
+</div>
+<div id="escalas" class="section level2 unnumbered hasAnchor">
+<h2>Escalas<a href="visualização.html#escalas" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Todos os tipos de escala (eixos x e y, cor, preenchimento e tamanho) tem funções específicas de controle e podem ser totalmente customizadas.</p>
+<p>Os eixos, por exemplo, são modificados pelas funções com o prefixo <code>scale_[x|y]_**()</code>.</p>
+<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="visualização.html#cb154-1" tabindex="-1"></a><span class="fu">apropos</span>(<span class="st">&quot;^scale_x_&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;scale_x_binned&quot;     &quot;scale_x_continuous&quot; &quot;scale_x_date&quot;      
+## [4] &quot;scale_x_datetime&quot;   &quot;scale_x_discrete&quot;   &quot;scale_x_log10&quot;     
+## [7] &quot;scale_x_reverse&quot;    &quot;scale_x_sqrt&quot;       &quot;scale_x_time&quot;</code></pre>
+<p><code>scale_x_continuous</code>, <code>scale_x_discrete</code>, <code>scale_x_datetime</code> e <code>scale_x_date</code> são os tipos básicos de eixos x e y que você pode modificar no ggplot2. <code>scale_x_log10</code>, <code>scale_x_sqrt</code> e <code>scale_x_reverse</code> são transformações básicas para uma escala contínua. Também veremos como criar nossa nossa sequência para composição de eixos.</p>
+<p>Existem alguns argumentos básicos par as funções relacionadas às escalas numéricas.</p>
+<ul>
+<li><strong>name</strong>: Nome do eixo ou título da legenda.</li>
+<li><strong>limits</strong>: Define o intervalo que os dados serão apresentados no gráfico.</li>
+<li><strong>breaks</strong>: Marcadores dos eixos ou da legenda.</li>
+<li><strong>labels</strong>: Rótulos dos marcadores.</li>
+</ul>
+</div>
+<div id="scale_xy_continuous" class="section level2 unnumbered hasAnchor">
+<h2>scale_x|y_continuous<a href="visualização.html#scale_xy_continuous" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>O ggplot2 determina uma escala e limite padrão para os gráficos de acordo com a escala de variação. Às vezes, queremos maior detalhe da escala e por isso temos que modificar os argumentos.</p>
+<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="visualização.html#cb156-1" tabindex="-1"></a><span class="fu">ggplot</span>(tab_inv, <span class="fu">aes</span>(dap, h)) <span class="sc">+</span></span>
+<span id="cb156-2"><a href="visualização.html#cb156-2" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
+<pre><code>## Warning: Removed 1783 rows containing missing
+## values (`geom_point()`).</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-71-1.png" width="672" /></p>
+<p>A alteração dos <code>breacks</code> é feita por um vetor que indica onde será adicionado o marcador do eixo.</p>
+<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="visualização.html#cb158-1" tabindex="-1"></a><span class="fu">ggplot</span>(tab_inv, <span class="fu">aes</span>(dap, h)) <span class="sc">+</span></span>
+<span id="cb158-2"><a href="visualização.html#cb158-2" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb158-3"><a href="visualização.html#cb158-3" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">90</span>, <span class="dv">2</span>))</span></code></pre></div>
+<pre><code>## Warning: Removed 1783 rows containing missing
+## values (`geom_point()`).</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-72-1.png" width="672" /></p>
+<p>Caso seja interessante altera o rotulo do marcador, temos que criar um novo vetor que contem os nomes.</p>
+<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="visualização.html#cb160-1" tabindex="-1"></a><span class="fu">ggplot</span>(tab_inv, <span class="fu">aes</span>(dap, h)) <span class="sc">+</span></span>
+<span id="cb160-2"><a href="visualização.html#cb160-2" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb160-3"><a href="visualização.html#cb160-3" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">90</span>, <span class="dv">5</span>), <span class="at">labels =</span> <span class="fu">paste</span>(<span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">90</span>, <span class="dv">5</span>), <span class="st">&quot;cm&quot;</span>))</span></code></pre></div>
+<pre><code>## Warning: Removed 1783 rows containing missing
+## values (`geom_point()`).</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-73-1.png" width="672" /></p>
+</div>
+<div id="escalas-de-cor" class="section level2 unnumbered hasAnchor">
+<h2>Escalas de cor<a href="visualização.html#escalas-de-cor" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>A paleta de cor é um ponto crítico em um gráfico. Muitas vezes utilizamos a dimensão de cor para comparar algo e por este motivo devemos escolher com cuidado as cores que iremos colocar. O ggplot2 disponibiliza algumas paletas e funções à nossa disposição. Vocês podem pesquisar cada uma delas mais tarde e ver qual o diferencial que cada uma trás.</p>
+<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="visualização.html#cb162-1" tabindex="-1"></a><span class="fu">apropos</span>(<span class="st">&quot;^scale_color_&quot;</span>)</span></code></pre></div>
+<pre><code>##  [1] &quot;scale_color_binned&quot;     &quot;scale_color_brewer&quot;     &quot;scale_color_continuous&quot;
+##  [4] &quot;scale_color_date&quot;       &quot;scale_color_datetime&quot;   &quot;scale_color_discrete&quot;  
+##  [7] &quot;scale_color_distiller&quot;  &quot;scale_color_fermenter&quot;  &quot;scale_color_gradient&quot;  
+## [10] &quot;scale_color_gradient2&quot;  &quot;scale_color_gradientn&quot;  &quot;scale_color_grey&quot;      
+## [13] &quot;scale_color_hue&quot;        &quot;scale_color_identity&quot;   &quot;scale_color_manual&quot;    
+## [16] &quot;scale_color_ordinal&quot;    &quot;scale_color_steps&quot;      &quot;scale_color_steps2&quot;    
+## [19] &quot;scale_color_stepsn&quot;     &quot;scale_color_viridis_b&quot;  &quot;scale_color_viridis_c&quot; 
+## [22] &quot;scale_color_viridis_d&quot;</code></pre>
+<p>A característica básica é que existem funções para variáveis discretas e funções para variais contínuas. Para variáveis discretas, por exemplo, a função padrão é a <code>scale_[fill|color]_hue()</code>.</p>
+<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="visualização.html#cb164-1" tabindex="-1"></a><span class="fu">ggplot</span>(tab_inv, <span class="fu">aes</span>(dap, h, <span class="at">color =</span> clone)) <span class="sc">+</span></span>
+<span id="cb164-2"><a href="visualização.html#cb164-2" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb164-3"><a href="visualização.html#cb164-3" tabindex="-1"></a>  <span class="fu">scale_fill_hue</span>()</span></code></pre></div>
+<pre><code>## Warning: Removed 1783 rows containing missing
+## values (`geom_point()`).</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-75-1.png" width="672" /></p>
+<p>O pacote <code>RColorBrewer</code> disponibiliza um conjunto de paletas que podem ser incorporadas no ggplot2. basta identificar qual você deseja. Há paletas sequenciais e paletas divergentes.
+Caso queria ver as paletas, explore pelo comando <code>RColorBrewer::display.brewer.all()</code>. No gráfico, basta indicar o nome da paleta no argumento <code>palette</code>.</p>
+<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="visualização.html#cb166-1" tabindex="-1"></a><span class="fu">ggplot</span>(tab_inv, <span class="fu">aes</span>(dap, h, <span class="at">color =</span> clone)) <span class="sc">+</span></span>
+<span id="cb166-2"><a href="visualização.html#cb166-2" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb166-3"><a href="visualização.html#cb166-3" tabindex="-1"></a>  <span class="fu">scale_color_brewer</span>(<span class="at">palette =</span> <span class="st">&quot;Set1&quot;</span>)</span></code></pre></div>
+<pre><code>## Warning: Removed 1783 rows containing missing
+## values (`geom_point()`).</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-76-1.png" width="672" /></p>
+<p>Caso você queria colocar suas próprias cores, terá de fazer isso manualmente. Eu recomendo o site <a href="http://colorbrewer2.org/" class="uri">http://colorbrewer2.org/</a>. A partir do código hexadecimal, podemos colocar as cores que queremos com a função <code>scale_[color|fill]_manual()</code>.</p>
+<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb168-1"><a href="visualização.html#cb168-1" tabindex="-1"></a><span class="fu">ggplot</span>(tab_inv, <span class="fu">aes</span>(dap, h, <span class="at">color =</span> clone)) <span class="sc">+</span></span>
+<span id="cb168-2"><a href="visualização.html#cb168-2" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb168-3"><a href="visualização.html#cb168-3" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;blue&quot;</span>, <span class="st">&quot;darkgreen&quot;</span>, <span class="st">&quot;gold&quot;</span>, <span class="st">&quot;cyan&quot;</span>, <span class="st">&quot;#fc9272&quot;</span>, <span class="st">&quot;#4a1486&quot;</span>))</span></code></pre></div>
+<pre><code>## Warning: Removed 1783 rows containing missing
+## values (`geom_point()`).</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-77-1.png" width="672" /></p>
+<p>Se for preciso economizar na impressão e colocar o gráfico em escala de cinza, sem problema, temos uma função pronta para isto.</p>
+<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb170-1"><a href="visualização.html#cb170-1" tabindex="-1"></a><span class="fu">ggplot</span>(tab_inv, <span class="fu">aes</span>(dap, h, <span class="at">color =</span> clone)) <span class="sc">+</span></span>
+<span id="cb170-2"><a href="visualização.html#cb170-2" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb170-3"><a href="visualização.html#cb170-3" tabindex="-1"></a>  <span class="fu">scale_color_grey</span>()</span></code></pre></div>
+<pre><code>## Warning: Removed 1783 rows containing missing
+## values (`geom_point()`).</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-78-1.png" width="672" /></p>
+</div>
+<div id="facets" class="section level2 unnumbered hasAnchor">
+<h2>Facets<a href="visualização.html#facets" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Talvez o recuso mais interessante do R e ggplot2 no contexto de gráficos exploratórios seja a possibilidade (e facilidade) de criar gráficos em painéis. Esse pode ser feito em outros softwares, mas o ggplot2 oferece uma gama de funcionalidades relacionadas a este tema.</p>
+<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb172-1"><a href="visualização.html#cb172-1" tabindex="-1"></a><span class="fu">ggplot</span>(tab_inv, <span class="fu">aes</span>(dap, h, <span class="at">color =</span> clone)) <span class="sc">+</span></span>
+<span id="cb172-2"><a href="visualização.html#cb172-2" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb172-3"><a href="visualização.html#cb172-3" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>) <span class="sc">+</span></span>
+<span id="cb172-4"><a href="visualização.html#cb172-4" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>clone) <span class="sc">+</span></span>
+<span id="cb172-5"><a href="visualização.html#cb172-5" tabindex="-1"></a>  <span class="fu">scale_color_brewer</span>(<span class="at">palette =</span> <span class="st">&quot;Dark2&quot;</span>)</span></code></pre></div>
+<pre><code>## `geom_smooth()` using formula = &#39;y ~
+## x&#39;</code></pre>
+<pre><code>## Warning: Removed 1783 rows containing
+## non-finite values (`stat_smooth()`).</code></pre>
+<pre><code>## Warning: Removed 1783 rows containing missing
+## values (`geom_point()`).</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-79-1.png" width="672" /></p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="joins.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="exercícios.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>R para análise de dados</title>
+  <meta name="description" content="R para análise de dados" />
+  <meta name="generator" content="bookdown 0.37 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="R para análise de dados" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="R para análise de dados" />
+  
+  
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+
+<link rel="next" href="sobre-o-r.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Apresentação</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#requisitos"><i class="fa fa-check"></i>Requisitos</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#parte-1---introdução-à-linguagem-r-e-processamento-básico-de-dados"><i class="fa fa-check"></i>Parte 1 - Introdução à linguagem R e Processamento Básico de dados</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#parte-2---visualização-de-dados-e-estatística-experimental"><i class="fa fa-check"></i>Parte 2 - Visualização de dados e estatística experimental</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="sobre-o-r.html"><a href="sobre-o-r.html"><i class="fa fa-check"></i>Sobre o R</a>
+<ul>
+<li class="chapter" data-level="" data-path="sobre-o-r.html"><a href="sobre-o-r.html#download-do-r-e-rstudio"><i class="fa fa-check"></i>Download do R e RStudio</a></li>
+</ul></li>
+<li class="part"><span><b>Parte I</b></span></li>
+<li class="chapter" data-level="" data-path="manipulação-de-dados.html"><a href="manipulação-de-dados.html"><i class="fa fa-check"></i>Manipulação de dados</a>
+<ul>
+<li class="chapter" data-level="" data-path="manipulação-de-dados.html"><a href="manipulação-de-dados.html#warm-up"><i class="fa fa-check"></i>Warm-Up</a>
+<ul>
+<li class="chapter" data-level="" data-path="manipulação-de-dados.html"><a href="manipulação-de-dados.html#conhecendo-os-dados"><i class="fa fa-check"></i>Conhecendo os dados</a></li>
+<li class="chapter" data-level="" data-path="manipulação-de-dados.html"><a href="manipulação-de-dados.html#qual-o-lucro-médio-dos-filmes"><i class="fa fa-check"></i>Qual o lucro médio dos filmes?</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="manipulação-de-dados.html"><a href="manipulação-de-dados.html#sobre-o-tidyverse"><i class="fa fa-check"></i>Sobre o Tidyverse</a>
+<ul>
+<li class="chapter" data-level="" data-path="manipulação-de-dados.html"><a href="manipulação-de-dados.html#filter"><i class="fa fa-check"></i>Filter</a></li>
+<li class="chapter" data-level="" data-path="manipulação-de-dados.html"><a href="manipulação-de-dados.html#arrange"><i class="fa fa-check"></i>Arrange</a></li>
+<li class="chapter" data-level="" data-path="manipulação-de-dados.html"><a href="manipulação-de-dados.html#select"><i class="fa fa-check"></i>Select</a></li>
+<li class="chapter" data-level="" data-path="manipulação-de-dados.html"><a href="manipulação-de-dados.html#mutate"><i class="fa fa-check"></i>Mutate</a></li>
+<li class="chapter" data-level="" data-path="manipulação-de-dados.html"><a href="manipulação-de-dados.html#summarise"><i class="fa fa-check"></i>Summarise</a></li>
+<li class="chapter" data-level="" data-path="manipulação-de-dados.html"><a href="manipulação-de-dados.html#operador"><i class="fa fa-check"></i>Operador %&gt;%</a></li>
+<li class="chapter" data-level="" data-path="manipulação-de-dados.html"><a href="manipulação-de-dados.html#gráficos-rápidos"><i class="fa fa-check"></i>Gráficos rápidos</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="joins.html"><a href="joins.html"><i class="fa fa-check"></i>Joins</a></li>
+<li class="part"><span><b>Parte II</b></span></li>
+<li class="chapter" data-level="" data-path="visualização.html"><a href="visualização.html"><i class="fa fa-check"></i>Visualização</a>
+<ul>
+<li class="chapter" data-level="" data-path="visualização.html"><a href="visualização.html#conceitos-básicos"><i class="fa fa-check"></i>Conceitos básicos</a></li>
+<li class="chapter" data-level="" data-path="visualização.html"><a href="visualização.html#layers"><i class="fa fa-check"></i>Layers</a></li>
+<li class="chapter" data-level="" data-path="visualização.html"><a href="visualização.html#os-dados"><i class="fa fa-check"></i>Os dados</a></li>
+<li class="chapter" data-level="" data-path="visualização.html"><a href="visualização.html#a-camada-de-geometria"><i class="fa fa-check"></i>A camada de geometria</a></li>
+<li class="chapter" data-level="" data-path="visualização.html"><a href="visualização.html#a-camada-de-estatísticas"><i class="fa fa-check"></i>A camada de estatísticas</a></li>
+<li class="chapter" data-level="" data-path="visualização.html"><a href="visualização.html#edições-de-eixos"><i class="fa fa-check"></i>Edições de eixos</a></li>
+<li class="chapter" data-level="" data-path="visualização.html"><a href="visualização.html#aesthetics"><i class="fa fa-check"></i>Aesthetics</a></li>
+<li class="chapter" data-level="" data-path="visualização.html"><a href="visualização.html#grupos"><i class="fa fa-check"></i>Grupos</a></li>
+<li class="chapter" data-level="" data-path="visualização.html"><a href="visualização.html#geometrias"><i class="fa fa-check"></i>Geometrias</a>
+<ul>
+<li class="chapter" data-level="" data-path="visualização.html"><a href="visualização.html#histograma-e-densidade"><i class="fa fa-check"></i>Histograma e Densidade</a></li>
+<li class="chapter" data-level="" data-path="visualização.html"><a href="visualização.html#densidade"><i class="fa fa-check"></i>Densidade</a></li>
+<li class="chapter" data-level="" data-path="visualização.html"><a href="visualização.html#boxplot"><i class="fa fa-check"></i>Boxplot</a></li>
+<li class="chapter" data-level="" data-path="visualização.html"><a href="visualização.html#vilolin-e-dotplot"><i class="fa fa-check"></i>Vilolin e dotplot</a></li>
+<li class="chapter" data-level="" data-path="visualização.html"><a href="visualização.html#barras"><i class="fa fa-check"></i>Barras</a></li>
+<li class="chapter" data-level="" data-path="visualização.html"><a href="visualização.html#texto"><i class="fa fa-check"></i>Texto</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="visualização.html"><a href="visualização.html#escalas"><i class="fa fa-check"></i>Escalas</a></li>
+<li class="chapter" data-level="" data-path="visualização.html"><a href="visualização.html#scale_xy_continuous"><i class="fa fa-check"></i>scale_x|y_continuous</a></li>
+<li class="chapter" data-level="" data-path="visualização.html"><a href="visualização.html#escalas-de-cor"><i class="fa fa-check"></i>Escalas de cor</a></li>
+<li class="chapter" data-level="" data-path="visualização.html"><a href="visualização.html#facets"><i class="fa fa-check"></i>Facets</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="exercícios.html"><a href="exercícios.html"><i class="fa fa-check"></i>Exercícios</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R para análise de dados</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="header">
+<h1 class="title">R para análise de dados</h1>
+</div>
+<div id="apresentação" class="section level1 unnumbered hasAnchor">
+<h1>Apresentação<a href="index.html#apresentação" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Instrutor: Ítalo Cegatta<br />
+Blog pessoal: <a href="https://italocegatta.github.io" class="uri">https://italocegatta.github.io</a></p>
+<p><br></p>
+<div id="requisitos" class="section level2 unnumbered hasAnchor">
+<h2>Requisitos<a href="index.html#requisitos" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li><a href="https://italocegatta.github.io/r_relampago">Material online</a></li>
+<li><a href="https://cran.r-project.org/bin/windows/base/">Software R</a></li>
+<li><a href="https://www.rstudio.com/products/rstudio/download/#download">Software RStudio</a></li>
+<li>Pacotes <code>install.packages(c("tidyverse", "readxl", "gapminder"))</code></li>
+<li><a href="https://suzano.sharepoint.com/:f:/s/portalpdi/manejo/Eu21s2wBEt5DuP1UnWEJIMIBp1EOZXlJY0ckII5yXKwNAg?e=JMres8">Bases de dados</a></li>
+</ul>
+<p><br></p>
+<div id="parte-1---introdução-à-linguagem-r-e-processamento-básico-de-dados" class="section level3 unnumbered hasAnchor">
+<h3>Parte 1 - Introdução à linguagem R e Processamento Básico de dados<a href="index.html#parte-1---introdução-à-linguagem-r-e-processamento-básico-de-dados" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>Linguagem R e RStudio</li>
+<li>Manipulação de dados</li>
+</ul>
+<p><br></p>
+</div>
+<div id="parte-2---visualização-de-dados-e-estatística-experimental" class="section level3 unnumbered hasAnchor">
+<h3>Parte 2 - Visualização de dados e estatística experimental<a href="index.html#parte-2---visualização-de-dados-e-estatística-experimental" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>Processamento e análise gráfica de dados</li>
+</ul>
+<p><br></p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+
+<a href="sobre-o-r.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

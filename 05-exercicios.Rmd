@@ -1,0 +1,69 @@
+# Exercícios {-}
+
+(@) **Alguns pacotes possuem data frames para uso nos exemplos. Carregue o pacote `gapminder` aplique a função `glimpse` na objeto `gapminder` que pertence ao respectivo pacote.**
+
+```{r eval=TRUE, echo=FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(gapminder)
+library(readxl)
+
+glimpse(gapminder)
+```
+<br>
+
+(@) **Importe o arquivo `continents.xlsx` e mostre seu conteúdo na tela.**
+
+```{r eval=TRUE, echo=FALSE, message=FALSE, warning=FALSE}
+continents <- read_excel("input/continents.xlsx")
+
+continents
+```
+<br>
+
+(@) **Faça um join entre a tabela `gapminder` e `continents`, onde `gapminder` será a tabela de referência. Salve essa operação em um objeto chamado `gap_cont`.**
+
+```{r eval=TRUE, echo=FALSE}
+gap_cont <- left_join(gapminder, continents) 
+
+gap_cont
+```
+<br>
+
+
+(@) **Com base no objeto `gap_cont`, filtre as informações do continente `Oceania`.**
+
+```{r eval=TRUE, echo=FALSE}
+gap_cont %>%
+  filter(continent == "Oceania")
+```
+<br>
+
+(@) **Faça um heatmap considerando apenas os países da `asia`, onde no eixo x temos o `year`, no eixo y o `country` e na dimensão de preenchimento `lifeExp`.**
+
+Dicas: filter, geom_tile.
+
+```{r eval=TRUE, echo=FALSE}
+gap_cont %>% 
+  filter(continent == "Asia") %>% 
+  ggplot(aes(x = year, y = country, fill = lifeExp)) +
+    geom_tile()
+```
+
+
+(@) **Faça um gráfico de dispersão da area do continente e a renda per capta média do continente. Lembre-se que ao computar a renda média do continente a partir dos países, precisamos ponderar pela população de cada país. A renda per capta é a variável `gdpPercap`. A área está na variável `area_km2` do objeto `continents`. Faça o gráfico proposto logo abaixo.**
+
+Dicas: mutate, group_by, summarize, left_join, geom_text e o parâmetro nudge_y.
+
+```{r eval=TRUE, echo=FALSE}
+gapminder %>%
+  mutate(GDP = gdpPercap * pop) %>%  
+  group_by(continent) %>%  
+  summarize(cont_gdp = sum(GDP), rpc = mean(gdpPercap)) %>%  
+    left_join(continents) %>%  
+    mutate(per_cap = cont_gdp / population) %>%  
+    ggplot(aes(x = area_km2, y = per_cap)) +
+    geom_point() +  
+    geom_text(aes(label = continent), nudge_y = 5e3)  
+```
+
+

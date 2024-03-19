@@ -1,8 +1,15 @@
+---
+title: "R para análise de dados"
+site: bookdown::bookdown_site
+documentclass: book
+---
+
+<br>
+
 # Apresentação {-}
 
 Instrutor: Ítalo Cegatta  
-Blog pessoal: https://italocegatta.github.io
-E-mail: italocegatta@gmail.com
+Blog pessoal: https://italocegatta.github.io  
 
 
 <br>
@@ -29,5 +36,3 @@ E-mail: italocegatta@gmail.com
 * Processamento e análise gráfica de dados
 
 <br>
-
-

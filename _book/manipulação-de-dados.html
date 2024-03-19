@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Manipulação de dados | R para análise de dados</title>
+  <meta name="description" content="Manipulação de dados | R para análise de dados" />
+  <meta name="generator" content="bookdown 0.37 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Manipulação de dados | R para análise de dados" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Manipulação de dados | R para análise de dados" />
+  
+  
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="sobre-o-r.html"/>
+<link rel="next" href="joins.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Apresentação</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#requisitos"><i class="fa fa-check"></i>Requisitos</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#parte-1---introdução-à-linguagem-r-e-processamento-básico-de-dados"><i class="fa fa-check"></i>Parte 1 - Introdução à linguagem R e Processamento Básico de dados</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#parte-2---visualização-de-dados-e-estatística-experimental"><i class="fa fa-check"></i>Parte 2 - Visualização de dados e estatística experimental</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="sobre-o-r.html"><a href="sobre-o-r.html"><i class="fa fa-check"></i>Sobre o R</a>
+<ul>
+<li class="chapter" data-level="" data-path="sobre-o-r.html"><a href="sobre-o-r.html#download-do-r-e-rstudio"><i class="fa fa-check"></i>Download do R e RStudio</a></li>
+</ul></li>
+<li class="part"><span><b>Parte I</b></span></li>
+<li class="chapter" data-level="" data-path="manipulação-de-dados.html"><a href="manipulação-de-dados.html"><i class="fa fa-check"></i>Manipulação de dados</a>
+<ul>
+<li class="chapter" data-level="" data-path="manipulação-de-dados.html"><a href="manipulação-de-dados.html#warm-up"><i class="fa fa-check"></i>Warm-Up</a>
+<ul>
+<li class="chapter" data-level="" data-path="manipulação-de-dados.html"><a href="manipulação-de-dados.html#conhecendo-os-dados"><i class="fa fa-check"></i>Conhecendo os dados</a></li>
+<li class="chapter" data-level="" data-path="manipulação-de-dados.html"><a href="manipulação-de-dados.html#qual-o-lucro-médio-dos-filmes"><i class="fa fa-check"></i>Qual o lucro médio dos filmes?</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="manipulação-de-dados.html"><a href="manipulação-de-dados.html#sobre-o-tidyverse"><i class="fa fa-check"></i>Sobre o Tidyverse</a>
+<ul>
+<li class="chapter" data-level="" data-path="manipulação-de-dados.html"><a href="manipulação-de-dados.html#filter"><i class="fa fa-check"></i>Filter</a></li>
+<li class="chapter" data-level="" data-path="manipulação-de-dados.html"><a href="manipulação-de-dados.html#arrange"><i class="fa fa-check"></i>Arrange</a></li>
+<li class="chapter" data-level="" data-path="manipulação-de-dados.html"><a href="manipulação-de-dados.html#select"><i class="fa fa-check"></i>Select</a></li>
+<li class="chapter" data-level="" data-path="manipulação-de-dados.html"><a href="manipulação-de-dados.html#mutate"><i class="fa fa-check"></i>Mutate</a></li>
+<li class="chapter" data-level="" data-path="manipulação-de-dados.html"><a href="manipulação-de-dados.html#summarise"><i class="fa fa-check"></i>Summarise</a></li>
+<li class="chapter" data-level="" data-path="manipulação-de-dados.html"><a href="manipulação-de-dados.html#operador"><i class="fa fa-check"></i>Operador %&gt;%</a></li>
+<li class="chapter" data-level="" data-path="manipulação-de-dados.html"><a href="manipulação-de-dados.html#gráficos-rápidos"><i class="fa fa-check"></i>Gráficos rápidos</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="joins.html"><a href="joins.html"><i class="fa fa-check"></i>Joins</a></li>
+<li class="part"><span><b>Parte II</b></span></li>
+<li class="chapter" data-level="" data-path="visualização.html"><a href="visualização.html"><i class="fa fa-check"></i>Visualização</a>
+<ul>
+<li class="chapter" data-level="" data-path="visualização.html"><a href="visualização.html#conceitos-básicos"><i class="fa fa-check"></i>Conceitos básicos</a></li>
+<li class="chapter" data-level="" data-path="visualização.html"><a href="visualização.html#layers"><i class="fa fa-check"></i>Layers</a></li>
+<li class="chapter" data-level="" data-path="visualização.html"><a href="visualização.html#os-dados"><i class="fa fa-check"></i>Os dados</a></li>
+<li class="chapter" data-level="" data-path="visualização.html"><a href="visualização.html#a-camada-de-geometria"><i class="fa fa-check"></i>A camada de geometria</a></li>
+<li class="chapter" data-level="" data-path="visualização.html"><a href="visualização.html#a-camada-de-estatísticas"><i class="fa fa-check"></i>A camada de estatísticas</a></li>
+<li class="chapter" data-level="" data-path="visualização.html"><a href="visualização.html#edições-de-eixos"><i class="fa fa-check"></i>Edições de eixos</a></li>
+<li class="chapter" data-level="" data-path="visualização.html"><a href="visualização.html#aesthetics"><i class="fa fa-check"></i>Aesthetics</a></li>
+<li class="chapter" data-level="" data-path="visualização.html"><a href="visualização.html#grupos"><i class="fa fa-check"></i>Grupos</a></li>
+<li class="chapter" data-level="" data-path="visualização.html"><a href="visualização.html#geometrias"><i class="fa fa-check"></i>Geometrias</a>
+<ul>
+<li class="chapter" data-level="" data-path="visualização.html"><a href="visualização.html#histograma-e-densidade"><i class="fa fa-check"></i>Histograma e Densidade</a></li>
+<li class="chapter" data-level="" data-path="visualização.html"><a href="visualização.html#densidade"><i class="fa fa-check"></i>Densidade</a></li>
+<li class="chapter" data-level="" data-path="visualização.html"><a href="visualização.html#boxplot"><i class="fa fa-check"></i>Boxplot</a></li>
+<li class="chapter" data-level="" data-path="visualização.html"><a href="visualização.html#vilolin-e-dotplot"><i class="fa fa-check"></i>Vilolin e dotplot</a></li>
+<li class="chapter" data-level="" data-path="visualização.html"><a href="visualização.html#barras"><i class="fa fa-check"></i>Barras</a></li>
+<li class="chapter" data-level="" data-path="visualização.html"><a href="visualização.html#texto"><i class="fa fa-check"></i>Texto</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="visualização.html"><a href="visualização.html#escalas"><i class="fa fa-check"></i>Escalas</a></li>
+<li class="chapter" data-level="" data-path="visualização.html"><a href="visualização.html#scale_xy_continuous"><i class="fa fa-check"></i>scale_x|y_continuous</a></li>
+<li class="chapter" data-level="" data-path="visualização.html"><a href="visualização.html#escalas-de-cor"><i class="fa fa-check"></i>Escalas de cor</a></li>
+<li class="chapter" data-level="" data-path="visualização.html"><a href="visualização.html#facets"><i class="fa fa-check"></i>Facets</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="exercícios.html"><a href="exercícios.html"><i class="fa fa-check"></i>Exercícios</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R para análise de dados</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="manipulação-de-dados" class="section level1 unnumbered hasAnchor">
+<h1>Manipulação de dados<a href="manipulação-de-dados.html#manipulação-de-dados" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="warm-up" class="section level2 unnumbered hasAnchor">
+<h2>Warm-Up<a href="manipulação-de-dados.html#warm-up" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="conhecendo-os-dados" class="section level3 unnumbered hasAnchor">
+<h3>Conhecendo os dados<a href="manipulação-de-dados.html#conhecendo-os-dados" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Vamos começar importando os dados do arquivo <code>input/jpf_ifc_ms.xlsx</code>. Para indicar que o arquivo está dentro de uma pasta, é preciso utilizar a barra <code>/</code>,</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="manipulação-de-dados.html#cb1-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
+<pre><code>## ── Attaching core tidyverse packages ──
+## ✔ dplyr     1.1.4     ✔ readr     2.1.4
+## ✔ forcats   1.0.0     ✔ stringr   1.5.1
+## ✔ ggplot2   3.4.4     ✔ tibble    3.2.1
+## ✔ lubridate 1.9.3     ✔ tidyr     1.3.0
+## ✔ purrr     1.0.2     
+## ── Conflicts ──────────────────────────
+## ✖ dplyr::filter() masks stats::filter()
+## ✖ dplyr::lag()    masks stats::lag()
+## ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="manipulação-de-dados.html#cb3-1" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb3-2"><a href="manipulação-de-dados.html#cb3-2" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="manipulação-de-dados.html#cb3-3" tabindex="-1"></a>tab_ifc <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">&quot;input/jpf_ifc_ms.xlsx&quot;</span>)</span>
+<span id="cb3-4"><a href="manipulação-de-dados.html#cb3-4" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="manipulação-de-dados.html#cb3-5" tabindex="-1"></a>tab_ifc</span></code></pre></div>
+<pre><code>## # A tibble: 70,916 × 8
+##    matgen  indice_sitio imatcc   dap altura altura_dom area_basal ncovas_viva
+##    &lt;chr&gt;          &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt;       &lt;dbl&gt;
+##  1 ARA6084         25.3   17.5 10.7    12.8       13.8       8.45         900
+##  2 ARA6084         24.8   13.7  9.99   12.1       13.2       6.98         850
+##  3 VT01            28.2   29.5 11.7    17.0       18.6      11.9         1100
+##  4 VT01            27.8   29.7 11.3    16.4       18.0      12.3         1150
+##  5 VT01            28.5   39.4 16.0    26.0       28.8      24.0         1175
+##  6 VT01            31.6   44.2 17.2    28.5       31.8      24.4         1025
+##  7 VT01            26.9   33.5 13.8    21.3       23.4      17.7         1150
+##  8 VT01            29.3   39.8 17.3    27.0       29.6      23.4          975
+##  9 IPB22           26.9   26.4 14.5    23.7       25.9      15.7          925
+## 10 IPB22           28.7   29.8 12.9    22.6       25.6      14.8         1075
+## # ℹ 70,906 more rows</code></pre>
+<p>Primeiro vamos fazer um histograma para poder ver a distribuição da variável <code>imatcc</code>.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="manipulação-de-dados.html#cb5-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> tab_ifc, <span class="fu">aes</span>(<span class="at">x =</span> imatcc)) <span class="sc">+</span></span>
+<span id="cb5-2"><a href="manipulação-de-dados.html#cb5-2" tabindex="-1"></a>  <span class="fu">geom_histogram</span>() </span></code></pre></div>
+<pre><code>## `stat_bin()` using `bins = 30`. Pick
+## better value with `binwidth`.</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<p>Agora, vamos ver a relação entre o <code>dap</code> e o <code>altura</code> dos filmes.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="manipulação-de-dados.html#cb7-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> tab_ifc, <span class="fu">aes</span>(<span class="at">x =</span> dap, <span class="at">y =</span> altura)) <span class="sc">+</span></span>
+<span id="cb7-2"><a href="manipulação-de-dados.html#cb7-2" tabindex="-1"></a>    <span class="fu">geom_point</span>()</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="manipulação-de-dados.html#cb8-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> tab_ifc, <span class="fu">aes</span>(<span class="at">x =</span> dap, <span class="at">y =</span> altura)) <span class="sc">+</span></span>
+<span id="cb8-2"><a href="manipulação-de-dados.html#cb8-2" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb8-3"><a href="manipulação-de-dados.html#cb8-3" tabindex="-1"></a>  <span class="fu">geom_smooth</span>()</span></code></pre></div>
+<pre><code>## `geom_smooth()` using method = &#39;gam&#39;
+## and formula = &#39;y ~ s(x, bs = &quot;cs&quot;)&#39;</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+</div>
+<div id="qual-o-lucro-médio-dos-filmes" class="section level3 unnumbered hasAnchor">
+<h3>Qual o lucro médio dos filmes?<a href="manipulação-de-dados.html#qual-o-lucro-médio-dos-filmes" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Nosso objetivo agora é calcular o lucro médio dos filmes. Primeiro vamos criar uma coluna e calcular o lucro de cada filme.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="manipulação-de-dados.html#cb10-1" tabindex="-1"></a>tab_ifc_modificado <span class="ot">&lt;-</span> <span class="fu">mutate</span>(tab_ifc, <span class="at">vol_individual =</span> pi <span class="sc">*</span> dap<span class="sc">^</span><span class="dv">2</span> <span class="sc">*</span> <span class="dv">1</span><span class="sc">/</span><span class="dv">4000</span> <span class="sc">*</span> altura <span class="sc">*</span> <span class="fl">0.5</span>)</span>
+<span id="cb10-2"><a href="manipulação-de-dados.html#cb10-2" tabindex="-1"></a>tab_ifc_modificado</span></code></pre></div>
+<pre><code>## # A tibble: 70,916 × 9
+##    matgen  indice_sitio imatcc   dap altura altura_dom area_basal ncovas_viva
+##    &lt;chr&gt;          &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt;       &lt;dbl&gt;
+##  1 ARA6084         25.3   17.5 10.7    12.8       13.8       8.45         900
+##  2 ARA6084         24.8   13.7  9.99   12.1       13.2       6.98         850
+##  3 VT01            28.2   29.5 11.7    17.0       18.6      11.9         1100
+##  4 VT01            27.8   29.7 11.3    16.4       18.0      12.3         1150
+##  5 VT01            28.5   39.4 16.0    26.0       28.8      24.0         1175
+##  6 VT01            31.6   44.2 17.2    28.5       31.8      24.4         1025
+##  7 VT01            26.9   33.5 13.8    21.3       23.4      17.7         1150
+##  8 VT01            29.3   39.8 17.3    27.0       29.6      23.4          975
+##  9 IPB22           26.9   26.4 14.5    23.7       25.9      15.7          925
+## 10 IPB22           28.7   29.8 12.9    22.6       25.6      14.8         1075
+## # ℹ 70,906 more rows
+## # ℹ 1 more variable: vol_individual &lt;dbl&gt;</code></pre>
+<p>Vamos isolar os valores de lucro e colocar em um objeto e em seguida calcular a média.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="manipulação-de-dados.html#cb12-1" tabindex="-1"></a>vec_vol_individual <span class="ot">&lt;-</span> <span class="fu">pull</span>(tab_ifc_modificado, vol_individual)</span>
+<span id="cb12-2"><a href="manipulação-de-dados.html#cb12-2" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="manipulação-de-dados.html#cb12-3" tabindex="-1"></a><span class="fu">mean</span>(vec_vol_individual)</span></code></pre></div>
+<pre><code>## [1] 1.874253</code></pre>
+<p>Vamos refazer os 2 primeiros passos unindo os comandos em um só.</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="manipulação-de-dados.html#cb14-1" tabindex="-1"></a>vec_vol_individual <span class="ot">&lt;-</span> <span class="fu">pull</span>(<span class="fu">mutate</span>(tab_ifc, <span class="at">vol_individual =</span> pi <span class="sc">*</span> dap<span class="sc">^</span><span class="dv">2</span> <span class="sc">*</span> <span class="dv">1</span><span class="sc">/</span><span class="dv">4000</span> <span class="sc">*</span> altura <span class="sc">*</span> <span class="fl">0.5</span>))</span>
+<span id="cb14-2"><a href="manipulação-de-dados.html#cb14-2" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="manipulação-de-dados.html#cb14-3" tabindex="-1"></a><span class="fu">mean</span>(vec_vol_individual)</span></code></pre></div>
+<pre><code>## [1] 1.874253</code></pre>
+<p>Seguindo a mesma ideia, podemos unificar todos os comandos em uma única chamada.</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="manipulação-de-dados.html#cb16-1" tabindex="-1"></a><span class="fu">mean</span>(<span class="fu">pull</span>(<span class="fu">mutate</span>(tab_ifc, <span class="at">vol_individual =</span> pi <span class="sc">*</span> dap<span class="sc">^</span><span class="dv">2</span> <span class="sc">*</span> <span class="dv">1</span><span class="sc">/</span><span class="dv">4000</span> <span class="sc">*</span> altura <span class="sc">*</span> <span class="fl">0.5</span>), vol_individual))</span></code></pre></div>
+<pre><code>## [1] 1.874253</code></pre>
+<p>Agora utilizando um operador especial chamado <code>pipe</code>, vamos executar as mesmas funções, porém de forma organizada e de fácil interpretação.</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="manipulação-de-dados.html#cb18-1" tabindex="-1"></a>tab_ifc <span class="sc">%&gt;%</span> </span>
+<span id="cb18-2"><a href="manipulação-de-dados.html#cb18-2" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">vol_individual =</span> pi <span class="sc">*</span> dap<span class="sc">^</span><span class="dv">2</span> <span class="sc">*</span> <span class="dv">1</span><span class="sc">/</span><span class="dv">4000</span> <span class="sc">*</span> altura <span class="sc">*</span> <span class="fl">0.5</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb18-3"><a href="manipulação-de-dados.html#cb18-3" tabindex="-1"></a>  <span class="fu">pull</span>(vol_individual) <span class="sc">%&gt;%</span> </span>
+<span id="cb18-4"><a href="manipulação-de-dados.html#cb18-4" tabindex="-1"></a>  <span class="fu">mean</span>()</span></code></pre></div>
+<pre><code>## [1] 1.874253</code></pre>
+</div>
+</div>
+<div id="sobre-o-tidyverse" class="section level2 unnumbered hasAnchor">
+<h2>Sobre o Tidyverse<a href="manipulação-de-dados.html#sobre-o-tidyverse" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Neste curso utilizaremos como referência os pacotes vinculados ao <code>tidyverse</code>, grupo de funções que utilizam a mesma filosofia de programação e foram desenvolvidos para atuarem em conjunto. O <a href="https://www.tidyverse.org/">tidyverse</a> é mantido por um time de desenvolvedores do RStudio e liderado pelo seu idealizador <a href="http://hadley.nz/">Hadley Wickham</a>.</p>
+<p>Há diversas funções disponíveis nos pacotes do <code>tidyverse</code> que tem um equivalente direto nos pacotes <code>base</code> do R, mas com uma implementação mais moderna e consistente que facilita a estruturação do código. No decorrer do curso vamos ter vários exemplos desse comparativo.</p>
+<p>A manipulação de dados é, na maioria das vezes, realizado com <code>data.frames</code> e por isso iremos ver as principais funções que lidam com essa estrutura de forma rápida e prática.</p>
+<p>O pacote <code>dplyr</code> é hoje um dos pacotes mais utilizados para esta finalidade. Ele disponibiliza diversas funções que são “equivalentes” às funções básicas do R, mas como melhorias que nos poupam tempo e deixam o código muito mais fácil de interpretar.</p>
+<p>Como exemplo, vamos realizar uma análise exploratória dos dados de um inventário na floresta amazônica.</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="manipulação-de-dados.html#cb20-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb20-2"><a href="manipulação-de-dados.html#cb20-2" tabindex="-1"></a><span class="fu">library</span>(readxl)</span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="manipulação-de-dados.html#cb21-1" tabindex="-1"></a>tab_clima <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">&quot;input/jpf_clima.xlsx&quot;</span>)</span>
+<span id="cb21-2"><a href="manipulação-de-dados.html#cb21-2" tabindex="-1"></a></span>
+<span id="cb21-3"><a href="manipulação-de-dados.html#cb21-3" tabindex="-1"></a>tab_clima</span></code></pre></div>
+<pre><code>## # A tibble: 3,648 × 11
+##    chave      site    ano   mes   seq    nd   doy   lon   lat  tmed   ppt
+##    &lt;chr&gt;      &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+##  1 ribas 2005 ribas  2005     1     1    31    15 -53.8 -20.5  25.2 325. 
+##  2 ribas 2005 ribas  2005     2     2    28    46 -53.8 -20.5  25.6  83.3
+##  3 ribas 2005 ribas  2005     3     3    31    74 -53.8 -20.5  25.7 117. 
+##  4 ribas 2005 ribas  2005     4     4    30   105 -53.8 -20.5  24.7  84.3
+##  5 ribas 2005 ribas  2005     5     5    31   135 -53.8 -20.5  21.1 104. 
+##  6 ribas 2005 ribas  2005     6     6    30   166 -53.8 -20.5  20.1 114. 
+##  7 ribas 2005 ribas  2005     7     7    31   196 -53.8 -20.5  17.4  21.8
+##  8 ribas 2005 ribas  2005     8     8    31   227 -53.8 -20.5  21.8  10.7
+##  9 ribas 2005 ribas  2005     9     9    30   258 -53.8 -20.5  22.0 133. 
+## 10 ribas 2005 ribas  2005    10    10    31   288 -53.8 -20.5  25.4 166. 
+## # ℹ 3,638 more rows</code></pre>
+<div id="filter" class="section level3 unnumbered hasAnchor">
+<h3>Filter<a href="manipulação-de-dados.html#filter" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Com a função <code>filter()</code> é possível selecionar linhas específicas, de acordo com o fator que se deseja. Podem ser usados um ou vários fatores de seleção.</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="manipulação-de-dados.html#cb23-1" tabindex="-1"></a><span class="fu">filter</span>(tab_clima, tmed <span class="sc">&gt;</span> <span class="dv">32</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 8 × 11
+##   chave            site     ano   mes   seq    nd   doy   lon    lat  tmed   ppt
+##   &lt;chr&gt;            &lt;chr&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1 ribas 2023       ribas   2023    12   228    31   349 -53.8 -20.5   32.0 30.4 
+## 2 tres_lagoas 2023 tres_…  2023    12   228    31   349 -51.7 -20.8   32.9 13.2 
+## 3 estreito 2005    estre…  2005    10    10    31   288 -47.5  -6.58  32.3 22.4 
+## 4 estreito 2015    estre…  2015     9   129    30   258 -47.5  -6.58  32.9  2.72
+## 5 estreito 2015    estre…  2015    10   130    31   288 -47.5  -6.58  32.9 43.9 
+## 6 estreito 2017    estre…  2017    10   154    31   288 -47.5  -6.58  32.6 68.5 
+## 7 estreito 2019    estre…  2019     9   177    30   258 -47.5  -6.58  32.7  4.85
+## 8 estreito 2020    estre…  2020     9   189    30   259 -47.5  -6.58  32.6  6.12</code></pre>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="manipulação-de-dados.html#cb25-1" tabindex="-1"></a><span class="fu">filter</span>(tab_clima, tmed <span class="sc">&gt;</span> <span class="dv">32</span> <span class="sc">&amp;</span> ppt <span class="sc">&lt;</span> <span class="dv">10</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 3 × 11
+##   chave         site       ano   mes   seq    nd   doy   lon   lat  tmed   ppt
+##   &lt;chr&gt;         &lt;chr&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1 estreito 2015 estreito  2015     9   129    30   258 -47.5 -6.58  32.9  2.72
+## 2 estreito 2019 estreito  2019     9   177    30   258 -47.5 -6.58  32.7  4.85
+## 3 estreito 2020 estreito  2020     9   189    30   259 -47.5 -6.58  32.6  6.12</code></pre>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="manipulação-de-dados.html#cb27-1" tabindex="-1"></a><span class="fu">filter</span>(tab_clima, tmed <span class="sc">&gt;</span> <span class="dv">32</span> <span class="sc">|</span> ppt <span class="sc">&gt;</span> <span class="dv">400</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 28 × 11
+##    chave           site    ano   mes   seq    nd   doy   lon    lat  tmed    ppt
+##    &lt;chr&gt;           &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;
+##  1 ribas 2023      ribas  2023    12   228    31   349 -53.8 -20.5   32.0  30.4 
+##  2 tres_lagoas 20… tres…  2007     1    25    31    15 -51.7 -20.8   25.9 412.  
+##  3 tres_lagoas 20… tres…  2023    12   228    31   349 -51.7 -20.8   32.9  13.2 
+##  4 acailandia 2008 acai…  2008     3    39    31    75 -47.5  -4.98  24.3 444.  
+##  5 acailandia 2023 acai…  2023    11   227    30   319 -47.5  -4.98  27.7 536.  
+##  6 estreito 2005   estr…  2005    10    10    31   288 -47.5  -6.58  32.3  22.4 
+##  7 estreito 2015   estr…  2015     9   129    30   258 -47.5  -6.58  32.9   2.72
+##  8 estreito 2015   estr…  2015    10   130    31   288 -47.5  -6.58  32.9  43.9 
+##  9 estreito 2017   estr…  2017    10   154    31   288 -47.5  -6.58  32.6  68.5 
+## 10 estreito 2019   estr…  2019     9   177    30   258 -47.5  -6.58  32.7   4.85
+## # ℹ 18 more rows</code></pre>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="manipulação-de-dados.html#cb29-1" tabindex="-1"></a><span class="fu">filter</span>(tab_clima, site <span class="sc">==</span> <span class="st">&quot;ribas&quot;</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 228 × 11
+##    chave      site    ano   mes   seq    nd   doy   lon   lat  tmed   ppt
+##    &lt;chr&gt;      &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+##  1 ribas 2005 ribas  2005     1     1    31    15 -53.8 -20.5  25.2 325. 
+##  2 ribas 2005 ribas  2005     2     2    28    46 -53.8 -20.5  25.6  83.3
+##  3 ribas 2005 ribas  2005     3     3    31    74 -53.8 -20.5  25.7 117. 
+##  4 ribas 2005 ribas  2005     4     4    30   105 -53.8 -20.5  24.7  84.3
+##  5 ribas 2005 ribas  2005     5     5    31   135 -53.8 -20.5  21.1 104. 
+##  6 ribas 2005 ribas  2005     6     6    30   166 -53.8 -20.5  20.1 114. 
+##  7 ribas 2005 ribas  2005     7     7    31   196 -53.8 -20.5  17.4  21.8
+##  8 ribas 2005 ribas  2005     8     8    31   227 -53.8 -20.5  21.8  10.7
+##  9 ribas 2005 ribas  2005     9     9    30   258 -53.8 -20.5  22.0 133. 
+## 10 ribas 2005 ribas  2005    10    10    31   288 -53.8 -20.5  25.4 166. 
+## # ℹ 218 more rows</code></pre>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="manipulação-de-dados.html#cb31-1" tabindex="-1"></a><span class="fu">filter</span>(tab_clima, site <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;ribas&quot;</span>, <span class="st">&quot;tres_lagoas&quot;</span>))</span></code></pre></div>
+<pre><code>## # A tibble: 456 × 11
+##    chave      site    ano   mes   seq    nd   doy   lon   lat  tmed   ppt
+##    &lt;chr&gt;      &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+##  1 ribas 2005 ribas  2005     1     1    31    15 -53.8 -20.5  25.2 325. 
+##  2 ribas 2005 ribas  2005     2     2    28    46 -53.8 -20.5  25.6  83.3
+##  3 ribas 2005 ribas  2005     3     3    31    74 -53.8 -20.5  25.7 117. 
+##  4 ribas 2005 ribas  2005     4     4    30   105 -53.8 -20.5  24.7  84.3
+##  5 ribas 2005 ribas  2005     5     5    31   135 -53.8 -20.5  21.1 104. 
+##  6 ribas 2005 ribas  2005     6     6    30   166 -53.8 -20.5  20.1 114. 
+##  7 ribas 2005 ribas  2005     7     7    31   196 -53.8 -20.5  17.4  21.8
+##  8 ribas 2005 ribas  2005     8     8    31   227 -53.8 -20.5  21.8  10.7
+##  9 ribas 2005 ribas  2005     9     9    30   258 -53.8 -20.5  22.0 133. 
+## 10 ribas 2005 ribas  2005    10    10    31   288 -53.8 -20.5  25.4 166. 
+## # ℹ 446 more rows</code></pre>
+</div>
+<div id="arrange" class="section level3 unnumbered hasAnchor">
+<h3>Arrange<a href="manipulação-de-dados.html#arrange" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Para ordenar as colunas, podemos usar a função <code>arrange()</code>. A hierarquia é dada pela sequência dos fatores que são adicionados como argumentos da função.</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="manipulação-de-dados.html#cb33-1" tabindex="-1"></a><span class="fu">arrange</span>(tab_clima, tmed)</span></code></pre></div>
+<pre><code>## # A tibble: 3,648 × 11
+##    chave             site    ano   mes   seq    nd   doy   lon   lat  tmed   ppt
+##    &lt;chr&gt;             &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+##  1 itarare 2016      itar…  2016     6   138    30   167 -49.3 -24.1  13.4  97.2
+##  2 itarare 2009      itar…  2009     6    54    30   166 -49.3 -24.1  13.7  84.6
+##  3 itarare 2011      itar…  2011     6    78    30   166 -49.3 -24.1  13.7  93.1
+##  4 itarare 2021      itar…  2021     7   199    31   196 -49.3 -24.1  13.8  37.8
+##  5 itarare 2007      itar…  2007     7    31    31   196 -49.3 -24.1  13.9 194. 
+##  6 sao_jose_campos … sao_…  2009     6    54    30   166 -45.9 -23.2  14.1  47.7
+##  7 itapetininga 2009 itap…  2009     6    54    30   166 -48.0 -23.6  14.2  70.8
+##  8 avare 2009        avare  2009     6    54    30   166 -48.9 -23.1  14.3  71.7
+##  9 itapetininga 2016 itap…  2016     6   138    30   167 -48.0 -23.6  14.3 120. 
+## 10 avare 2011        avare  2011     6    78    30   166 -48.9 -23.1  14.4  36  
+## # ℹ 3,638 more rows</code></pre>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="manipulação-de-dados.html#cb35-1" tabindex="-1"></a><span class="fu">arrange</span>(tab_clima, <span class="sc">-</span>tmed)</span></code></pre></div>
+<pre><code>## # A tibble: 3,648 × 11
+##    chave            site    ano   mes   seq    nd   doy   lon    lat  tmed   ppt
+##    &lt;chr&gt;            &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+##  1 estreito 2015    estr…  2015     9   129    30   258 -47.5  -6.58  32.9  2.72
+##  2 tres_lagoas 2023 tres…  2023    12   228    31   349 -51.7 -20.8   32.9 13.2 
+##  3 estreito 2015    estr…  2015    10   130    31   288 -47.5  -6.58  32.9 43.9 
+##  4 estreito 2019    estr…  2019     9   177    30   258 -47.5  -6.58  32.7  4.85
+##  5 estreito 2020    estr…  2020     9   189    30   259 -47.5  -6.58  32.6  6.12
+##  6 estreito 2017    estr…  2017    10   154    31   288 -47.5  -6.58  32.6 68.5 
+##  7 estreito 2005    estr…  2005    10    10    31   288 -47.5  -6.58  32.3 22.4 
+##  8 ribas 2023       ribas  2023    12   228    31   349 -53.8 -20.5   32.0 30.4 
+##  9 acailandia 2015  acai…  2015    10   130    31   288 -47.5  -4.98  31.9 28.7 
+## 10 paragominas 2015 para…  2015    10   130    31   288 -47.4  -3.03  31.9 17.7 
+## # ℹ 3,638 more rows</code></pre>
+</div>
+<div id="select" class="section level3 unnumbered hasAnchor">
+<h3>Select<a href="manipulação-de-dados.html#select" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A função <code>select()</code> auxilia-nos na seleção de variáveis (colunas).</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="manipulação-de-dados.html#cb37-1" tabindex="-1"></a><span class="fu">select</span>(tab_clima, site, ano, mes, ppt)</span></code></pre></div>
+<pre><code>## # A tibble: 3,648 × 4
+##    site    ano   mes   ppt
+##    &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+##  1 ribas  2005     1 325. 
+##  2 ribas  2005     2  83.3
+##  3 ribas  2005     3 117. 
+##  4 ribas  2005     4  84.3
+##  5 ribas  2005     5 104. 
+##  6 ribas  2005     6 114. 
+##  7 ribas  2005     7  21.8
+##  8 ribas  2005     8  10.7
+##  9 ribas  2005     9 133. 
+## 10 ribas  2005    10 166. 
+## # ℹ 3,638 more rows</code></pre>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="manipulação-de-dados.html#cb39-1" tabindex="-1"></a><span class="fu">select</span>(tab_clima, site<span class="sc">:</span>doy)</span></code></pre></div>
+<pre><code>## # A tibble: 3,648 × 6
+##    site    ano   mes   seq    nd   doy
+##    &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+##  1 ribas  2005     1     1    31    15
+##  2 ribas  2005     2     2    28    46
+##  3 ribas  2005     3     3    31    74
+##  4 ribas  2005     4     4    30   105
+##  5 ribas  2005     5     5    31   135
+##  6 ribas  2005     6     6    30   166
+##  7 ribas  2005     7     7    31   196
+##  8 ribas  2005     8     8    31   227
+##  9 ribas  2005     9     9    30   258
+## 10 ribas  2005    10    10    31   288
+## # ℹ 3,638 more rows</code></pre>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="manipulação-de-dados.html#cb41-1" tabindex="-1"></a><span class="fu">select</span>(tab_clima, <span class="sc">-</span>(seq<span class="sc">:</span>lat))</span></code></pre></div>
+<pre><code>## # A tibble: 3,648 × 6
+##    chave      site    ano   mes  tmed   ppt
+##    &lt;chr&gt;      &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+##  1 ribas 2005 ribas  2005     1  25.2 325. 
+##  2 ribas 2005 ribas  2005     2  25.6  83.3
+##  3 ribas 2005 ribas  2005     3  25.7 117. 
+##  4 ribas 2005 ribas  2005     4  24.7  84.3
+##  5 ribas 2005 ribas  2005     5  21.1 104. 
+##  6 ribas 2005 ribas  2005     6  20.1 114. 
+##  7 ribas 2005 ribas  2005     7  17.4  21.8
+##  8 ribas 2005 ribas  2005     8  21.8  10.7
+##  9 ribas 2005 ribas  2005     9  22.0 133. 
+## 10 ribas 2005 ribas  2005    10  25.4 166. 
+## # ℹ 3,638 more rows</code></pre>
+</div>
+<div id="mutate" class="section level3 unnumbered hasAnchor">
+<h3>Mutate<a href="manipulação-de-dados.html#mutate" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Para criar novas variáveis, podemos usar a função <code>mutate()</code>. Um diferencial dessa função em relação à função base do R, é que podemos utilizar variáveis criadas dentro do próprio comando.</p>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="manipulação-de-dados.html#cb43-1" tabindex="-1"></a><span class="fu">mutate</span>(</span>
+<span id="cb43-2"><a href="manipulação-de-dados.html#cb43-2" tabindex="-1"></a>  tab_clima,</span>
+<span id="cb43-3"><a href="manipulação-de-dados.html#cb43-3" tabindex="-1"></a>  <span class="at">temp_otima =</span> tmed <span class="sc">&gt;=</span> <span class="dv">18</span> <span class="sc">&amp;</span> tmed <span class="sc">&lt;=</span> <span class="dv">22</span></span>
+<span id="cb43-4"><a href="manipulação-de-dados.html#cb43-4" tabindex="-1"></a>)</span></code></pre></div>
+<pre><code>## # A tibble: 3,648 × 12
+##    chave  site    ano   mes   seq    nd   doy   lon   lat  tmed   ppt temp_otima
+##    &lt;chr&gt;  &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;lgl&gt;     
+##  1 ribas… ribas  2005     1     1    31    15 -53.8 -20.5  25.2 325.  FALSE     
+##  2 ribas… ribas  2005     2     2    28    46 -53.8 -20.5  25.6  83.3 FALSE     
+##  3 ribas… ribas  2005     3     3    31    74 -53.8 -20.5  25.7 117.  FALSE     
+##  4 ribas… ribas  2005     4     4    30   105 -53.8 -20.5  24.7  84.3 FALSE     
+##  5 ribas… ribas  2005     5     5    31   135 -53.8 -20.5  21.1 104.  TRUE      
+##  6 ribas… ribas  2005     6     6    30   166 -53.8 -20.5  20.1 114.  TRUE      
+##  7 ribas… ribas  2005     7     7    31   196 -53.8 -20.5  17.4  21.8 FALSE     
+##  8 ribas… ribas  2005     8     8    31   227 -53.8 -20.5  21.8  10.7 TRUE      
+##  9 ribas… ribas  2005     9     9    30   258 -53.8 -20.5  22.0 133.  TRUE      
+## 10 ribas… ribas  2005    10    10    31   288 -53.8 -20.5  25.4 166.  FALSE     
+## # ℹ 3,638 more rows</code></pre>
+<p>Note que se quisermos utilizar os dados calculados no futuro, temos de salvar em um objeto. No caso, vamos salvar no mesmo objeto <code>tab_clima2</code> de forma que ele será atualizado com as novas colunas.</p>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="manipulação-de-dados.html#cb45-1" tabindex="-1"></a>tab_clima_modificado <span class="ot">&lt;-</span> <span class="fu">mutate</span>(</span>
+<span id="cb45-2"><a href="manipulação-de-dados.html#cb45-2" tabindex="-1"></a>  tab_clima,</span>
+<span id="cb45-3"><a href="manipulação-de-dados.html#cb45-3" tabindex="-1"></a>  <span class="at">temp_otima =</span> tmed <span class="sc">&gt;=</span> <span class="dv">18</span> <span class="sc">&amp;</span> tmed <span class="sc">&lt;=</span> <span class="dv">22</span></span>
+<span id="cb45-4"><a href="manipulação-de-dados.html#cb45-4" tabindex="-1"></a>)</span></code></pre></div>
+</div>
+<div id="summarise" class="section level3 unnumbered hasAnchor">
+<h3>Summarise<a href="manipulação-de-dados.html#summarise" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A função <code>summarise</code> nos permite resumir dados. Também é possível resumir dados em função de vários fatores com o <code>group_by</code>.</p>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="manipulação-de-dados.html#cb46-1" tabindex="-1"></a><span class="fu">summarise</span>(tab_clima, <span class="at">tmed_media =</span> <span class="fu">mean</span>(tmed))</span></code></pre></div>
+<pre><code>## # A tibble: 1 × 1
+##   tmed_media
+##        &lt;dbl&gt;
+## 1       23.7</code></pre>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="manipulação-de-dados.html#cb48-1" tabindex="-1"></a><span class="fu">summarise</span>(tab_clima, <span class="at">ppt_media =</span> <span class="fu">mean</span>(ppt))</span></code></pre></div>
+<pre><code>## # A tibble: 1 × 1
+##   ppt_media
+##       &lt;dbl&gt;
+## 1      102.</code></pre>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="manipulação-de-dados.html#cb50-1" tabindex="-1"></a>tab_clima_agrupado_ano <span class="ot">&lt;-</span> <span class="fu">group_by</span>(tab_clima, ano)</span>
+<span id="cb50-2"><a href="manipulação-de-dados.html#cb50-2" tabindex="-1"></a></span>
+<span id="cb50-3"><a href="manipulação-de-dados.html#cb50-3" tabindex="-1"></a><span class="fu">summarise</span>(tab_clima_agrupado_ano, <span class="at">tmed_media =</span> <span class="fu">mean</span>(tmed))</span></code></pre></div>
+<pre><code>## # A tibble: 19 × 2
+##      ano tmed_media
+##    &lt;dbl&gt;      &lt;dbl&gt;
+##  1  2005       23.6
+##  2  2006       23.0
+##  3  2007       23.5
+##  4  2008       23.2
+##  5  2009       23.4
+##  6  2010       23.4
+##  7  2011       22.9
+##  8  2012       23.6
+##  9  2013       23.5
+## 10  2014       24.0
+## 11  2015       24.7
+## 12  2016       24.0
+## 13  2017       23.6
+## 14  2018       23.7
+## 15  2019       24.5
+## 16  2020       24.2
+## 17  2021       24.1
+## 18  2022       23.5
+## 19  2023       24.4</code></pre>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="manipulação-de-dados.html#cb52-1" tabindex="-1"></a>tab_clima_agrupado_site_ano <span class="ot">&lt;-</span> <span class="fu">group_by</span>(tab_clima, site, ano)</span>
+<span id="cb52-2"><a href="manipulação-de-dados.html#cb52-2" tabindex="-1"></a></span>
+<span id="cb52-3"><a href="manipulação-de-dados.html#cb52-3" tabindex="-1"></a>tab_clima_site_ano <span class="ot">&lt;-</span> <span class="fu">summarise</span>(</span>
+<span id="cb52-4"><a href="manipulação-de-dados.html#cb52-4" tabindex="-1"></a>  tab_clima_agrupado_site_ano,</span>
+<span id="cb52-5"><a href="manipulação-de-dados.html#cb52-5" tabindex="-1"></a>  <span class="at">tmed_anual =</span> <span class="fu">mean</span>(tmed),</span>
+<span id="cb52-6"><a href="manipulação-de-dados.html#cb52-6" tabindex="-1"></a>  <span class="at">ppt_anual =</span> <span class="fu">sum</span>(ppt)</span>
+<span id="cb52-7"><a href="manipulação-de-dados.html#cb52-7" tabindex="-1"></a>)</span></code></pre></div>
+<pre><code>## `summarise()` has grouped output by
+## &#39;site&#39;. You can override using the
+## `.groups` argument.</code></pre>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="manipulação-de-dados.html#cb54-1" tabindex="-1"></a>tab_clima_site_ano </span></code></pre></div>
+<pre><code>## # A tibble: 304 × 4
+## # Groups:   site [16]
+##    site         ano tmed_anual ppt_anual
+##    &lt;chr&gt;      &lt;dbl&gt;      &lt;dbl&gt;     &lt;dbl&gt;
+##  1 acailandia  2005       27.3     1136.
+##  2 acailandia  2006       25.2     1930.
+##  3 acailandia  2007       27.1      937.
+##  4 acailandia  2008       25.6     1842.
+##  5 acailandia  2009       25.4     1782.
+##  6 acailandia  2010       26.5     1557.
+##  7 acailandia  2011       25.4     1655.
+##  8 acailandia  2012       26.5     1259.
+##  9 acailandia  2013       26.2     1417.
+## 10 acailandia  2014       27.0      993.
+## # ℹ 294 more rows</code></pre>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="manipulação-de-dados.html#cb56-1" tabindex="-1"></a><span class="fu">filter</span>(tab_clima_site_ano, ppt_anual <span class="sc">&lt;</span> <span class="dv">700</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 11 × 4
+## # Groups:   site [9]
+##    site               ano tmed_anual ppt_anual
+##    &lt;chr&gt;            &lt;dbl&gt;      &lt;dbl&gt;     &lt;dbl&gt;
+##  1 acailandia        2015       28.4      691.
+##  2 araraquara        2021       23.1      690.
+##  3 caravelas         2015       25.6      667.
+##  4 nanuque           2015       25.6      601.
+##  5 nanuque           2023       25.4      699.
+##  6 nova_venecia      2015       25.4      566.
+##  7 paragominas       2015       28.8      689.
+##  8 sao_mateus        2015       25.6      683.
+##  9 teixeira_freitas  2015       25.5      654.
+## 10 tres_lagoas       2020       26.2      641.
+## 11 tres_lagoas       2021       26.2      570.</code></pre>
+</div>
+<div id="operador" class="section level3 unnumbered hasAnchor">
+<h3>Operador %&gt;%<a href="manipulação-de-dados.html#operador" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>O pacote <code>dplyr</code> foi desenhado para trabalhar em conjunto que o operador em cadeia <code>%&gt;%</code>. O que esse operador faz é aplicar o que está no LHS no primeiro parâmetro da função do RHS. Podemos também direcionar o local onde o conteúdo do LHS será aplicado informando um <code>.</code> como argumento.</p>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="manipulação-de-dados.html#cb58-1" tabindex="-1"></a>tab_clima <span class="sc">%&gt;%</span></span>
+<span id="cb58-2"><a href="manipulação-de-dados.html#cb58-2" tabindex="-1"></a>  <span class="fu">group_by</span>(site, ano) <span class="sc">%&gt;%</span> </span>
+<span id="cb58-3"><a href="manipulação-de-dados.html#cb58-3" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb58-4"><a href="manipulação-de-dados.html#cb58-4" tabindex="-1"></a>    <span class="at">tmed_anual =</span> <span class="fu">mean</span>(tmed),</span>
+<span id="cb58-5"><a href="manipulação-de-dados.html#cb58-5" tabindex="-1"></a>    <span class="at">ppt_anual =</span> <span class="fu">sum</span>(ppt)</span>
+<span id="cb58-6"><a href="manipulação-de-dados.html#cb58-6" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> </span>
+<span id="cb58-7"><a href="manipulação-de-dados.html#cb58-7" tabindex="-1"></a>  <span class="fu">filter</span>(ppt_anual <span class="sc">&lt;</span> <span class="dv">700</span>)</span></code></pre></div>
+<pre><code>## `summarise()` has grouped output by
+## &#39;site&#39;. You can override using the
+## `.groups` argument.</code></pre>
+<pre><code>## # A tibble: 11 × 4
+## # Groups:   site [9]
+##    site               ano tmed_anual ppt_anual
+##    &lt;chr&gt;            &lt;dbl&gt;      &lt;dbl&gt;     &lt;dbl&gt;
+##  1 acailandia        2015       28.4      691.
+##  2 araraquara        2021       23.1      690.
+##  3 caravelas         2015       25.6      667.
+##  4 nanuque           2015       25.6      601.
+##  5 nanuque           2023       25.4      699.
+##  6 nova_venecia      2015       25.4      566.
+##  7 paragominas       2015       28.8      689.
+##  8 sao_mateus        2015       25.6      683.
+##  9 teixeira_freitas  2015       25.5      654.
+## 10 tres_lagoas       2020       26.2      641.
+## 11 tres_lagoas       2021       26.2      570.</code></pre>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="manipulação-de-dados.html#cb61-1" tabindex="-1"></a>tab_clima <span class="sc">%&gt;%</span> </span>
+<span id="cb61-2"><a href="manipulação-de-dados.html#cb61-2" tabindex="-1"></a>  <span class="fu">filter</span>(site <span class="sc">==</span> <span class="st">&quot;ribas&quot;</span>, mes <span class="sc">==</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb61-3"><a href="manipulação-de-dados.html#cb61-3" tabindex="-1"></a>  <span class="fu">select</span>(site, ano, mes, tmed) <span class="sc">%&gt;%</span> </span>
+<span id="cb61-4"><a href="manipulação-de-dados.html#cb61-4" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(tmed)) <span class="sc">%&gt;%</span> </span>
+<span id="cb61-5"><a href="manipulação-de-dados.html#cb61-5" tabindex="-1"></a>  <span class="fu">slice</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 5 × 4
+##   site    ano   mes  tmed
+##   &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1 ribas  2013     1  27.7
+## 2 ribas  2019     1  27.0
+## 3 ribas  2020     1  26.8
+## 4 ribas  2021     1  26.5
+## 5 ribas  2015     1  26.2</code></pre>
+</div>
+<div id="gráficos-rápidos" class="section level3 unnumbered hasAnchor">
+<h3>Gráficos rápidos<a href="manipulação-de-dados.html#gráficos-rápidos" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="manipulação-de-dados.html#cb63-1" tabindex="-1"></a>tab_clima <span class="sc">%&gt;%</span> </span>
+<span id="cb63-2"><a href="manipulação-de-dados.html#cb63-2" tabindex="-1"></a>  <span class="fu">group_by</span>(site, mes) <span class="sc">%&gt;%</span> </span>
+<span id="cb63-3"><a href="manipulação-de-dados.html#cb63-3" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb63-4"><a href="manipulação-de-dados.html#cb63-4" tabindex="-1"></a>    <span class="at">tmed_mensal =</span> <span class="fu">mean</span>(tmed)</span>
+<span id="cb63-5"><a href="manipulação-de-dados.html#cb63-5" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> </span>
+<span id="cb63-6"><a href="manipulação-de-dados.html#cb63-6" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(mes,tmed_mensal, <span class="at">color =</span> site)) <span class="sc">+</span></span>
+<span id="cb63-7"><a href="manipulação-de-dados.html#cb63-7" tabindex="-1"></a>    <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb63-8"><a href="manipulação-de-dados.html#cb63-8" tabindex="-1"></a>    <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">12</span>) <span class="sc">+</span></span>
+<span id="cb63-9"><a href="manipulação-de-dados.html#cb63-9" tabindex="-1"></a>    <span class="fu">theme_bw</span>()</span></code></pre></div>
+<pre><code>## `summarise()` has grouped output by
+## &#39;site&#39;. You can override using the
+## `.groups` argument.</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-31-1.png" width="672" /></p>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="manipulação-de-dados.html#cb65-1" tabindex="-1"></a>tab_clima <span class="sc">%&gt;%</span></span>
+<span id="cb65-2"><a href="manipulação-de-dados.html#cb65-2" tabindex="-1"></a>  <span class="fu">group_by</span>(site, ano) <span class="sc">%&gt;%</span> </span>
+<span id="cb65-3"><a href="manipulação-de-dados.html#cb65-3" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">ppt_anual =</span> <span class="fu">sum</span>(ppt)) <span class="sc">%&gt;%</span> </span>
+<span id="cb65-4"><a href="manipulação-de-dados.html#cb65-4" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb65-5"><a href="manipulação-de-dados.html#cb65-5" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">site =</span> <span class="fu">fct_reorder</span>(site, ppt_anual)) <span class="sc">%&gt;%</span> </span>
+<span id="cb65-6"><a href="manipulação-de-dados.html#cb65-6" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(ano, site, <span class="at">fill =</span> ppt_anual)) <span class="sc">+</span></span>
+<span id="cb65-7"><a href="manipulação-de-dados.html#cb65-7" tabindex="-1"></a>    <span class="fu">geom_tile</span>() <span class="sc">+</span></span>
+<span id="cb65-8"><a href="manipulação-de-dados.html#cb65-8" tabindex="-1"></a>    <span class="fu">scale_fill_viridis_b</span>() <span class="sc">+</span></span>
+<span id="cb65-9"><a href="manipulação-de-dados.html#cb65-9" tabindex="-1"></a>    <span class="fu">theme_bw</span>()</span></code></pre></div>
+<pre><code>## `summarise()` has grouped output by
+## &#39;site&#39;. You can override using the
+## `.groups` argument.</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-32-1.png" width="672" /></p>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="manipulação-de-dados.html#cb67-1" tabindex="-1"></a>tab_ifc <span class="sc">%&gt;%</span> </span>
+<span id="cb67-2"><a href="manipulação-de-dados.html#cb67-2" tabindex="-1"></a>  <span class="fu">group_by</span>(matgen) <span class="sc">%&gt;%</span> </span>
+<span id="cb67-3"><a href="manipulação-de-dados.html#cb67-3" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">imatcc =</span> <span class="fu">mean</span>(imatcc)) <span class="sc">%&gt;%</span> </span>
+<span id="cb67-4"><a href="manipulação-de-dados.html#cb67-4" tabindex="-1"></a>  <span class="fu">top_n</span>(<span class="dv">10</span>, imatcc) <span class="sc">%&gt;%</span> </span>
+<span id="cb67-5"><a href="manipulação-de-dados.html#cb67-5" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">matgen =</span> <span class="fu">fct_reorder</span>(matgen, <span class="sc">-</span>imatcc)) <span class="sc">%&gt;%</span> </span>
+<span id="cb67-6"><a href="manipulação-de-dados.html#cb67-6" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(matgen, imatcc)) <span class="sc">+</span></span>
+<span id="cb67-7"><a href="manipulação-de-dados.html#cb67-7" tabindex="-1"></a>    <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="cb67-8"><a href="manipulação-de-dados.html#cb67-8" tabindex="-1"></a>    <span class="fu">theme_bw</span>()</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-33-1.png" width="672" /></p>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="manipulação-de-dados.html#cb68-1" tabindex="-1"></a>tab_ifc <span class="sc">%&gt;%</span> </span>
+<span id="cb68-2"><a href="manipulação-de-dados.html#cb68-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(area_basal, altura_dom)) <span class="sc">+</span></span>
+<span id="cb68-3"><a href="manipulação-de-dados.html#cb68-3" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.03</span>) <span class="sc">+</span></span>
+<span id="cb68-4"><a href="manipulação-de-dados.html#cb68-4" tabindex="-1"></a>    <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>) <span class="sc">+</span></span>
+<span id="cb68-5"><a href="manipulação-de-dados.html#cb68-5" tabindex="-1"></a>    <span class="fu">theme_bw</span>()</span></code></pre></div>
+<pre><code>## `geom_smooth()` using formula = &#39;y ~
+## x&#39;</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-34-1.png" width="672" /></p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="sobre-o-r.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="joins.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
