@@ -153,7 +153,7 @@ No ggplot2, *aesthetic* são os elementos gráficos que representam as dimensõe
 * **alpha**: Isto define a opacidade de qualquer propriedade geométrica. É mais utilizada quando temos sobreposição de pontos ou linhas e queremos enxergar o que está por de trás.
 * **xend**, **yend**: Você vai usá-los raramente, quando criar um segmento de linha, ou seta. O início do segmento de linha será localizado o x e y, e a extremidade do segmento de linha será definida em xend, yend.
 
-Se aplicarmos a dimensão de cor em função da variável `Cod`, vamos notar que o `ggplot2` entendeu que se trata de números e por isso adicionou uma escala contínua de cor na legenda. Não está certo, mas é o default.
+Se aplicarmos a dimensão de cor em função da variável `cod1`, vamos notar que o `ggplot2` entendeu que se trata de números e por isso adicionou uma escala contínua de cor na legenda. Não está certo, mas é o default.
 
 ```{r}
 ggplot(tab_inv,  aes(x = dap, y = h, color = cod1)) +
@@ -213,14 +213,14 @@ ggplot(tab_resumo_clone, aes(dap, clone)) +
   geom_col()
 ```
 
-Se quisermos colorir as barras, o primeiro instinto seria provavelmente para definir `color = Esp`. Mas este argumento considera apenas o contorno das figuras bidimensionais.
+Se quisermos colorir as barras, o primeiro instinto seria provavelmente para definir `color = clone`. Mas este argumento considera apenas o contorno das figuras bidimensionais.
 
 ```{r}
 ggplot(tab_resumo_clone, aes(clone, dap, color = clone)) +
   geom_col()
 ```
 
-O preenchimento é feito utilizando o argumento `fill = Esp`.
+O preenchimento é feito utilizando o argumento `fill = clone`.
 
 ```{r}
 ggplot(tab_resumo_clone, aes(clone, dap, fill = clone)) +
@@ -264,7 +264,7 @@ ggplot(tab_inv, aes(h)) +
   geom_density(fill = "grey")
 ```
 
-Podemos identificar a distribuição do Esp através de cores.
+Podemos identificar a distribuição do `clone` através de cores.
 
 ```{r}
 ggplot(tab_inv, aes(h, fill = clone)) +
@@ -278,7 +278,7 @@ ggplot(tab_inv, aes(h, fill = clone, color = clone)) +
   geom_density(alpha = 0.3)
 ```
 
-Caso o interesse seja ver a contribuição de cada sexo para a distribuição total do peso, iremos trabalhar com o parâmetro `position = "stack"`
+Caso o interesse seja ver a contribuição de cada `clone` para a distribuição total da `h`, iremos trabalhar com o parâmetro `position = "stack"`
 
 ```{r}
 ggplot(tab_inv, aes(h, fill = clone, color = clone)) +
@@ -399,7 +399,7 @@ ggplot(tab_inv, aes(dap, h)) +
   geom_point()
 ```
 
-A alteração dos `breacks` é feita por um vetor que indica onde será adicionado o marcador do eixo.
+A alteração dos `breaks` é feita por um vetor que indica onde será adicionado o marcador do eixo.
 
 ```{r}
 ggplot(tab_inv, aes(dap, h)) +

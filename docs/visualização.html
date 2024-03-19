@@ -155,7 +155,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="manipulação-de-dados.html"><a href="manipulação-de-dados.html#warm-up"><i class="fa fa-check"></i>Warm-Up</a>
 <ul>
 <li class="chapter" data-level="" data-path="manipulação-de-dados.html"><a href="manipulação-de-dados.html#conhecendo-os-dados"><i class="fa fa-check"></i>Conhecendo os dados</a></li>
-<li class="chapter" data-level="" data-path="manipulação-de-dados.html"><a href="manipulação-de-dados.html#qual-o-lucro-médio-dos-filmes"><i class="fa fa-check"></i>Qual o lucro médio dos filmes?</a></li>
+<li class="chapter" data-level="" data-path="manipulação-de-dados.html"><a href="manipulação-de-dados.html#qual-o-volume-individual-médio"><i class="fa fa-check"></i>Qual o volume individual médio?</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="manipulação-de-dados.html"><a href="manipulação-de-dados.html#sobre-o-tidyverse"><i class="fa fa-check"></i>Sobre o Tidyverse</a>
 <ul>
@@ -324,7 +324,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><strong>alpha</strong>: Isto define a opacidade de qualquer propriedade geométrica. É mais utilizada quando temos sobreposição de pontos ou linhas e queremos enxergar o que está por de trás.</li>
 <li><strong>xend</strong>, <strong>yend</strong>: Você vai usá-los raramente, quando criar um segmento de linha, ou seta. O início do segmento de linha será localizado o x e y, e a extremidade do segmento de linha será definida em xend, yend.</li>
 </ul>
-<p>Se aplicarmos a dimensão de cor em função da variável <code>Cod</code>, vamos notar que o <code>ggplot2</code> entendeu que se trata de números e por isso adicionou uma escala contínua de cor na legenda. Não está certo, mas é o default.</p>
+<p>Se aplicarmos a dimensão de cor em função da variável <code>cod1</code>, vamos notar que o <code>ggplot2</code> entendeu que se trata de números e por isso adicionou uma escala contínua de cor na legenda. Não está certo, mas é o default.</p>
 <div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="visualização.html#cb47-1" tabindex="-1"></a><span class="fu">ggplot</span>(tab_inv,  <span class="fu">aes</span>(<span class="at">x =</span> dap, <span class="at">y =</span> h, <span class="at">color =</span> cod1)) <span class="sc">+</span></span>
 <span id="cb47-2"><a href="visualização.html#cb47-2" tabindex="-1"></a>  <span class="fu">geom_point</span>() </span></code></pre></div>
 <p>O ggplot2 gerou automaticamente uma paleta de cores para os dados e criou uma legenda. Tal como acontece com tudo, a paleta de cores também é ajustável, o que será discutido em mais detalhe abaixo. O padrão de cores do ggplot2 é bastante inteligente. Cada cor é equidistante em torno de um círculo de cor HSL, e têm igual luminância. A ideia é que nenhuma categoria tenha maior destaque que outra, em contrapartida ela pode ser um problema para leitores daltônicos.</p>
@@ -358,10 +358,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb52-10"><a href="visualização.html#cb52-10" tabindex="-1"></a></span>
 <span id="cb52-11"><a href="visualização.html#cb52-11" tabindex="-1"></a><span class="fu">ggplot</span>(tab_resumo_clone, <span class="fu">aes</span>(dap, clone)) <span class="sc">+</span></span>
 <span id="cb52-12"><a href="visualização.html#cb52-12" tabindex="-1"></a>  <span class="fu">geom_col</span>()</span></code></pre></div>
-<p>Se quisermos colorir as barras, o primeiro instinto seria provavelmente para definir <code>color = Esp</code>. Mas este argumento considera apenas o contorno das figuras bidimensionais.</p>
+<p>Se quisermos colorir as barras, o primeiro instinto seria provavelmente para definir <code>color = clone</code>. Mas este argumento considera apenas o contorno das figuras bidimensionais.</p>
 <div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="visualização.html#cb53-1" tabindex="-1"></a><span class="fu">ggplot</span>(tab_resumo_clone, <span class="fu">aes</span>(clone, dap, <span class="at">color =</span> clone)) <span class="sc">+</span></span>
 <span id="cb53-2"><a href="visualização.html#cb53-2" tabindex="-1"></a>  <span class="fu">geom_col</span>()</span></code></pre></div>
-<p>O preenchimento é feito utilizando o argumento <code>fill = Esp</code>.</p>
+<p>O preenchimento é feito utilizando o argumento <code>fill = clone</code>.</p>
 <div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="visualização.html#cb54-1" tabindex="-1"></a><span class="fu">ggplot</span>(tab_resumo_clone, <span class="fu">aes</span>(clone, dap, <span class="at">fill =</span> clone)) <span class="sc">+</span></span>
 <span id="cb54-2"><a href="visualização.html#cb54-2" tabindex="-1"></a>  <span class="fu">geom_col</span>()</span></code></pre></div>
 </div>
@@ -387,13 +387,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Visualizar a distribuição de frequências também é um recurso muito interessante para entender os nossos dados. Podemos fazê-lo através de um histograma eu de gráfico de densidade de frequências.</p>
 <div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="visualização.html#cb57-1" tabindex="-1"></a><span class="fu">ggplot</span>(tab_inv, <span class="fu">aes</span>(h)) <span class="sc">+</span></span>
 <span id="cb57-2"><a href="visualização.html#cb57-2" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">fill =</span> <span class="st">&quot;grey&quot;</span>)</span></code></pre></div>
-<p>Podemos identificar a distribuição do Esp através de cores.</p>
+<p>Podemos identificar a distribuição do <code>clone</code> através de cores.</p>
 <div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="visualização.html#cb58-1" tabindex="-1"></a><span class="fu">ggplot</span>(tab_inv, <span class="fu">aes</span>(h, <span class="at">fill =</span> clone)) <span class="sc">+</span></span>
 <span id="cb58-2"><a href="visualização.html#cb58-2" tabindex="-1"></a>  <span class="fu">geom_density</span>()</span></code></pre></div>
 <p>Entretanto o padrão da função <code>geom_density()</code> é usar <code>position = "identity"</code>. Isso significa que pode haver (como de fato acontece) sobreposição das curvas. Uma alternativa rápida é colocar opacidade ao preenchimento para poder ver através das curvas.</p>
 <div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="visualização.html#cb59-1" tabindex="-1"></a><span class="fu">ggplot</span>(tab_inv, <span class="fu">aes</span>(h, <span class="at">fill =</span> clone, <span class="at">color =</span> clone)) <span class="sc">+</span></span>
 <span id="cb59-2"><a href="visualização.html#cb59-2" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">alpha =</span> <span class="fl">0.3</span>)</span></code></pre></div>
-<p>Caso o interesse seja ver a contribuição de cada sexo para a distribuição total do peso, iremos trabalhar com o parâmetro <code>position = "stack"</code></p>
+<p>Caso o interesse seja ver a contribuição de cada <code>clone</code> para a distribuição total da <code>h</code>, iremos trabalhar com o parâmetro <code>position = "stack"</code></p>
 <div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="visualização.html#cb60-1" tabindex="-1"></a><span class="fu">ggplot</span>(tab_inv, <span class="fu">aes</span>(h, <span class="at">fill =</span> clone, <span class="at">color =</span> clone)) <span class="sc">+</span></span>
 <span id="cb60-2"><a href="visualização.html#cb60-2" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">position =</span> <span class="st">&quot;stack&quot;</span>)</span></code></pre></div>
 <p>A próxima variação é tratar os valores em porcentagem, do mesmo modo que fizemos com as barras.</p>
@@ -465,7 +465,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>O ggplot2 determina uma escala e limite padrão para os gráficos de acordo com a escala de variação. Às vezes, queremos maior detalhe da escala e por isso temos que modificar os argumentos.</p>
 <div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="visualização.html#cb71-1" tabindex="-1"></a><span class="fu">ggplot</span>(tab_inv, <span class="fu">aes</span>(dap, h)) <span class="sc">+</span></span>
 <span id="cb71-2"><a href="visualização.html#cb71-2" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
-<p>A alteração dos <code>breacks</code> é feita por um vetor que indica onde será adicionado o marcador do eixo.</p>
+<p>A alteração dos <code>breaks</code> é feita por um vetor que indica onde será adicionado o marcador do eixo.</p>
 <div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="visualização.html#cb72-1" tabindex="-1"></a><span class="fu">ggplot</span>(tab_inv, <span class="fu">aes</span>(dap, h)) <span class="sc">+</span></span>
 <span id="cb72-2"><a href="visualização.html#cb72-2" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
 <span id="cb72-3"><a href="visualização.html#cb72-3" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">90</span>, <span class="dv">2</span>))</span></code></pre></div>

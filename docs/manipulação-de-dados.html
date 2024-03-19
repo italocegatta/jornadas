@@ -155,7 +155,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="manipulação-de-dados.html"><a href="manipulação-de-dados.html#warm-up"><i class="fa fa-check"></i>Warm-Up</a>
 <ul>
 <li class="chapter" data-level="" data-path="manipulação-de-dados.html"><a href="manipulação-de-dados.html#conhecendo-os-dados"><i class="fa fa-check"></i>Conhecendo os dados</a></li>
-<li class="chapter" data-level="" data-path="manipulação-de-dados.html"><a href="manipulação-de-dados.html#qual-o-lucro-médio-dos-filmes"><i class="fa fa-check"></i>Qual o lucro médio dos filmes?</a></li>
+<li class="chapter" data-level="" data-path="manipulação-de-dados.html"><a href="manipulação-de-dados.html#qual-o-volume-individual-médio"><i class="fa fa-check"></i>Qual o volume individual médio?</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="manipulação-de-dados.html"><a href="manipulação-de-dados.html#sobre-o-tidyverse"><i class="fa fa-check"></i>Sobre o Tidyverse</a>
 <ul>
@@ -235,8 +235,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb4-2"><a href="manipulação-de-dados.html#cb4-2" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
 <span id="cb4-3"><a href="manipulação-de-dados.html#cb4-3" tabindex="-1"></a>  <span class="fu">geom_smooth</span>()</span></code></pre></div>
 </div>
-<div id="qual-o-lucro-médio-dos-filmes" class="section level3 unnumbered hasAnchor">
-<h3>Qual o lucro médio dos filmes?<a href="manipulação-de-dados.html#qual-o-lucro-médio-dos-filmes" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="qual-o-volume-individual-médio" class="section level3 unnumbered hasAnchor">
+<h3>Qual o volume individual médio?<a href="manipulação-de-dados.html#qual-o-volume-individual-médio" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Nosso objetivo agora é calcular o lucro médio dos filmes. Primeiro vamos criar uma coluna e calcular o lucro de cada filme.</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="manipulação-de-dados.html#cb5-1" tabindex="-1"></a>tab_ifc_modificado <span class="ot">&lt;-</span> <span class="fu">mutate</span>(tab_ifc, <span class="at">vol_individual =</span> pi <span class="sc">*</span> dap<span class="sc">^</span><span class="dv">2</span> <span class="sc">*</span> <span class="dv">1</span><span class="sc">/</span><span class="dv">4000</span> <span class="sc">*</span> altura <span class="sc">*</span> <span class="fl">0.5</span>)</span>
 <span id="cb5-2"><a href="manipulação-de-dados.html#cb5-2" tabindex="-1"></a>tab_ifc_modificado</span></code></pre></div>
@@ -298,11 +298,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb22-2"><a href="manipulação-de-dados.html#cb22-2" tabindex="-1"></a>  tab_clima,</span>
 <span id="cb22-3"><a href="manipulação-de-dados.html#cb22-3" tabindex="-1"></a>  <span class="at">temp_otima =</span> tmed <span class="sc">&gt;=</span> <span class="dv">18</span> <span class="sc">&amp;</span> tmed <span class="sc">&lt;=</span> <span class="dv">22</span></span>
 <span id="cb22-4"><a href="manipulação-de-dados.html#cb22-4" tabindex="-1"></a>)</span></code></pre></div>
-<p>Note que se quisermos utilizar os dados calculados no futuro, temos de salvar em um objeto. No caso, vamos salvar no mesmo objeto <code>tab_clima2</code> de forma que ele será atualizado com as novas colunas.</p>
+<p>Note que se quisermos utilizar os dados calculados no futuro, temos de salvar em um objeto. No caso, vamos salvar no mesmo objeto <code>tab_clima_modificado</code> de forma que ele será atualizado com as novas colunas.</p>
 <div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="manipulação-de-dados.html#cb23-1" tabindex="-1"></a>tab_clima_modificado <span class="ot">&lt;-</span> <span class="fu">mutate</span>(</span>
 <span id="cb23-2"><a href="manipulação-de-dados.html#cb23-2" tabindex="-1"></a>  tab_clima,</span>
 <span id="cb23-3"><a href="manipulação-de-dados.html#cb23-3" tabindex="-1"></a>  <span class="at">temp_otima =</span> tmed <span class="sc">&gt;=</span> <span class="dv">18</span> <span class="sc">&amp;</span> tmed <span class="sc">&lt;=</span> <span class="dv">22</span></span>
-<span id="cb23-4"><a href="manipulação-de-dados.html#cb23-4" tabindex="-1"></a>)</span></code></pre></div>
+<span id="cb23-4"><a href="manipulação-de-dados.html#cb23-4" tabindex="-1"></a>)</span>
+<span id="cb23-5"><a href="manipulação-de-dados.html#cb23-5" tabindex="-1"></a></span>
+<span id="cb23-6"><a href="manipulação-de-dados.html#cb23-6" tabindex="-1"></a>tab_clima_modificado</span></code></pre></div>
 </div>
 <div id="summarise" class="section level3 unnumbered hasAnchor">
 <h3>Summarise<a href="manipulação-de-dados.html#summarise" class="anchor-section" aria-label="Anchor link to header"></a></h3>

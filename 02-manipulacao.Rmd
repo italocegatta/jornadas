@@ -41,7 +41,7 @@ ggplot(data = tab_ifc, aes(x = dap, y = altura)) +
 ```
 
 
-### Qual o lucro médio dos filmes? {-}
+### Qual o volume individual médio? {-}
 
 Nosso objetivo agora é calcular o lucro médio dos filmes. Primeiro vamos criar uma coluna e calcular o lucro de cada filme.
 
@@ -172,13 +172,15 @@ mutate(
 )
 ```
 
-Note que se quisermos utilizar os dados calculados no futuro, temos de salvar em um objeto. No caso, vamos salvar no mesmo objeto `tab_clima2` de forma que ele será atualizado com as novas colunas.
+Note que se quisermos utilizar os dados calculados no futuro, temos de salvar em um objeto. No caso, vamos salvar no mesmo objeto `tab_clima_modificado` de forma que ele será atualizado com as novas colunas.
 
 ```{r}
 tab_clima_modificado <- mutate(
   tab_clima,
   temp_otima = tmed >= 18 & tmed <= 22
 )
+
+tab_clima_modificado
 ```
 
 
