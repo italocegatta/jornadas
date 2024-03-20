@@ -25,6 +25,7 @@ y <- tibble(
   valor3 = sample(20:30, 4)
 )
 ```
+
 ```{r}
 x
 ```
