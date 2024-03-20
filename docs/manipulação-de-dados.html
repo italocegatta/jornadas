@@ -218,7 +218,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2>Warm-Up<a href="manipulação-de-dados.html#warm-up" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <div id="conhecendo-os-dados" class="section level3 unnumbered hasAnchor">
 <h3>Conhecendo os dados<a href="manipulação-de-dados.html#conhecendo-os-dados" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Vamos começar importando os dados do arquivo <code>input/jpf_ifc_ms.xlsx</code>. Para indicar que o arquivo está dentro de uma pasta, é preciso utilizar a barra <code>/</code>,</p>
+<p>Vamos começar importando os dados do arquivo <code>input/jpf_ifc_ms.xlsx</code>. Para indicar que o arquivo está dentro de uma pasta, é preciso utilizar a barra <code>/</code>.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="manipulação-de-dados.html#cb1-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb1-2"><a href="manipulação-de-dados.html#cb1-2" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
 <span id="cb1-3"><a href="manipulação-de-dados.html#cb1-3" tabindex="-1"></a></span>
@@ -228,7 +228,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Primeiro vamos fazer um histograma para poder ver a distribuição da variável <code>imatcc</code>.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="manipulação-de-dados.html#cb2-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> tab_ifc, <span class="fu">aes</span>(<span class="at">x =</span> imatcc)) <span class="sc">+</span></span>
 <span id="cb2-2"><a href="manipulação-de-dados.html#cb2-2" tabindex="-1"></a>  <span class="fu">geom_histogram</span>() </span></code></pre></div>
-<p>Agora, vamos ver a relação entre o <code>dap</code> e o <code>altura</code> dos filmes.</p>
+<p>Agora, vamos ver a relação entre o <code>dap</code> e o <code>altura</code> das árvores.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="manipulação-de-dados.html#cb3-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> tab_ifc, <span class="fu">aes</span>(<span class="at">x =</span> dap, <span class="at">y =</span> altura)) <span class="sc">+</span></span>
 <span id="cb3-2"><a href="manipulação-de-dados.html#cb3-2" tabindex="-1"></a>    <span class="fu">geom_point</span>()</span></code></pre></div>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="manipulação-de-dados.html#cb4-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> tab_ifc, <span class="fu">aes</span>(<span class="at">x =</span> dap, <span class="at">y =</span> altura)) <span class="sc">+</span></span>
@@ -237,10 +237,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="qual-o-volume-individual-médio" class="section level3 unnumbered hasAnchor">
 <h3>Qual o volume individual médio?<a href="manipulação-de-dados.html#qual-o-volume-individual-médio" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Nosso objetivo agora é calcular o lucro médio dos filmes. Primeiro vamos criar uma coluna e calcular o lucro de cada filme.</p>
+<p>Nosso objetivo agora é calcular o volume individual as árvores. Vamos iniciar e criar uma coluna e calcular o volume de cada linha.</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="manipulação-de-dados.html#cb5-1" tabindex="-1"></a>tab_ifc_modificado <span class="ot">&lt;-</span> <span class="fu">mutate</span>(tab_ifc, <span class="at">vol_individual =</span> pi <span class="sc">*</span> dap<span class="sc">^</span><span class="dv">2</span> <span class="sc">*</span> <span class="dv">1</span><span class="sc">/</span><span class="dv">4000</span> <span class="sc">*</span> altura <span class="sc">*</span> <span class="fl">0.5</span>)</span>
 <span id="cb5-2"><a href="manipulação-de-dados.html#cb5-2" tabindex="-1"></a>tab_ifc_modificado</span></code></pre></div>
-<p>Vamos isolar os valores de lucro e colocar em um objeto e em seguida calcular a média.</p>
+<p>Vamos isolar o volume e colocar em um objeto e em seguida calcular a média.</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="manipulação-de-dados.html#cb6-1" tabindex="-1"></a>vec_vol_individual <span class="ot">&lt;-</span> <span class="fu">pull</span>(tab_ifc_modificado, vol_individual)</span>
 <span id="cb6-2"><a href="manipulação-de-dados.html#cb6-2" tabindex="-1"></a></span>
 <span id="cb6-3"><a href="manipulação-de-dados.html#cb6-3" tabindex="-1"></a><span class="fu">mean</span>(vec_vol_individual)</span></code></pre></div>

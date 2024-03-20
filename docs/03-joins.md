@@ -8,10 +8,12 @@ Primeiro, temos que ter claro que iremos fazer a operação com duas tabelas e d
 
 ![](https://mikoontz.github.io/data-carpentry-week/img/dplyr-joins.png)
 
-
 ```r
 library(tidyverse)
+```
 
+
+```r
 set.seed(12345)
 
 x <- tibble(
@@ -25,6 +27,16 @@ y <- tibble(
   valor3 = sample(20:30, 4)
 )
 ```
+
+```r
+x
+```
+
+
+```r
+y
+```
+
 
 Com base na tabela `x`, traga os valores da tabela `y` que correspondam com as chaves que existem na tabela `x`. Notem que a tabela 1 é o objeto `x` e eu quero ele como referencia.
 
@@ -45,7 +57,9 @@ Agora, considerando apenas o que tem em comum nas duas tabelas e depois o juntan
 
 ```r
 inner_join(x, y)
+```
 
+```r
 full_join(x, y)
 ```
 
@@ -54,6 +68,9 @@ Vimos até agora os 'joins' que movimentam colunas de uma tabela para outra, mas
 
 ```r
 semi_join(x, y)
+```
 
+```r
 anti_join(x, y)
 ```
+

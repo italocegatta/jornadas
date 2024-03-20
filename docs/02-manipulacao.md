@@ -8,7 +8,9 @@
 
 ### Conhecendo os dados {-}
 
-Vamos começar importando os dados do arquivo `input/jpf_ifc_ms.xlsx`. Para indicar que o arquivo está dentro de uma pasta, é preciso utilizar a barra `/`, 
+Vamos começar importando os dados do arquivo `input/jpf_ifc_ms.xlsx`. Para indicar que o arquivo está dentro de uma pasta, é preciso utilizar a barra `/`.
+
+
 
 
 ```r
@@ -28,7 +30,7 @@ ggplot(data = tab_ifc, aes(x = imatcc)) +
   geom_histogram() 
 ```
 
-Agora, vamos ver a relação entre o `dap` e o `altura` dos filmes.
+Agora, vamos ver a relação entre o `dap` e o `altura` das árvores.
 
 
 ```r
@@ -47,7 +49,7 @@ ggplot(data = tab_ifc, aes(x = dap, y = altura)) +
 
 ### Qual o volume individual médio? {-}
 
-Nosso objetivo agora é calcular o lucro médio dos filmes. Primeiro vamos criar uma coluna e calcular o lucro de cada filme.
+Nosso objetivo agora é calcular o volume individual as árvores. Vamos iniciar e criar uma coluna e calcular o volume de cada linha.
 
 
 ```r
@@ -55,7 +57,7 @@ tab_ifc_modificado <- mutate(tab_ifc, vol_individual = pi * dap^2 * 1/4000 * alt
 tab_ifc_modificado
 ```
 
-Vamos isolar os valores de lucro e colocar em um objeto e em seguida calcular a média.
+Vamos isolar o volume e colocar em um objeto e em seguida calcular a média.
 
 
 ```r

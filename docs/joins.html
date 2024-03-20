@@ -218,32 +218,31 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>O pacote <code>dplyr</code> fornece uma família de funções para trabalhar com ‘joins’ no R. Vamos ver como as principais funcionam e como podemos aplicar nas nossas análises.</p>
 <p>Primeiro, temos que ter claro que iremos fazer a operação com duas tabelas e deixar claro quem é a tabela 1 (esquerda) e a tabela 2 (direita). A tabela 1 normalmente é nossa referencia e a partir dela iremos buscar algumas ou todas informações da tabela 2 a partir de pontos em comum. Veja no esquema abaixo as 4 principais que envolvem ‘joins’.</p>
 <p><img src="https://mikoontz.github.io/data-carpentry-week/img/dplyr-joins.png" /></p>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="joins.html#cb35-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb35-2"><a href="joins.html#cb35-2" tabindex="-1"></a></span>
-<span id="cb35-3"><a href="joins.html#cb35-3" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">12345</span>)</span>
-<span id="cb35-4"><a href="joins.html#cb35-4" tabindex="-1"></a></span>
-<span id="cb35-5"><a href="joins.html#cb35-5" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
-<span id="cb35-6"><a href="joins.html#cb35-6" tabindex="-1"></a>  <span class="at">chave =</span> LETTERS[<span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="dv">5</span>)], </span>
-<span id="cb35-7"><a href="joins.html#cb35-7" tabindex="-1"></a>  <span class="at">valor1 =</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="dv">4</span>)</span>
-<span id="cb35-8"><a href="joins.html#cb35-8" tabindex="-1"></a>)</span>
-<span id="cb35-9"><a href="joins.html#cb35-9" tabindex="-1"></a></span>
-<span id="cb35-10"><a href="joins.html#cb35-10" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
-<span id="cb35-11"><a href="joins.html#cb35-11" tabindex="-1"></a>  <span class="at">chave =</span> LETTERS[<span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>)], </span>
-<span id="cb35-12"><a href="joins.html#cb35-12" tabindex="-1"></a>  <span class="at">valor2 =</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="dv">4</span>),</span>
-<span id="cb35-13"><a href="joins.html#cb35-13" tabindex="-1"></a>  <span class="at">valor3 =</span> <span class="fu">sample</span>(<span class="dv">20</span><span class="sc">:</span><span class="dv">30</span>, <span class="dv">4</span>)</span>
-<span id="cb35-14"><a href="joins.html#cb35-14" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="joins.html#cb35-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="joins.html#cb36-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">12345</span>)</span>
+<span id="cb36-2"><a href="joins.html#cb36-2" tabindex="-1"></a></span>
+<span id="cb36-3"><a href="joins.html#cb36-3" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb36-4"><a href="joins.html#cb36-4" tabindex="-1"></a>  <span class="at">chave =</span> LETTERS[<span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="dv">5</span>)], </span>
+<span id="cb36-5"><a href="joins.html#cb36-5" tabindex="-1"></a>  <span class="at">valor1 =</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="dv">4</span>)</span>
+<span id="cb36-6"><a href="joins.html#cb36-6" tabindex="-1"></a>)</span>
+<span id="cb36-7"><a href="joins.html#cb36-7" tabindex="-1"></a></span>
+<span id="cb36-8"><a href="joins.html#cb36-8" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb36-9"><a href="joins.html#cb36-9" tabindex="-1"></a>  <span class="at">chave =</span> LETTERS[<span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>)], </span>
+<span id="cb36-10"><a href="joins.html#cb36-10" tabindex="-1"></a>  <span class="at">valor2 =</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="dv">4</span>),</span>
+<span id="cb36-11"><a href="joins.html#cb36-11" tabindex="-1"></a>  <span class="at">valor3 =</span> <span class="fu">sample</span>(<span class="dv">20</span><span class="sc">:</span><span class="dv">30</span>, <span class="dv">4</span>)</span>
+<span id="cb36-12"><a href="joins.html#cb36-12" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="joins.html#cb37-1" tabindex="-1"></a>x</span></code></pre></div>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="joins.html#cb38-1" tabindex="-1"></a>y</span></code></pre></div>
 <p>Com base na tabela <code>x</code>, traga os valores da tabela <code>y</code> que correspondam com as chaves que existem na tabela <code>x</code>. Notem que a tabela 1 é o objeto <code>x</code> e eu quero ele como referencia.</p>
-<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="joins.html#cb36-1" tabindex="-1"></a><span class="fu">left_join</span>(x, y, <span class="at">by =</span> <span class="st">&quot;chave&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="joins.html#cb39-1" tabindex="-1"></a><span class="fu">left_join</span>(x, y, <span class="at">by =</span> <span class="st">&quot;chave&quot;</span>)</span></code></pre></div>
 <p>Mas se eu quiser utilizar a tabela do objeto <code>y</code> como referência, ou eu mudo os objetos de posição na função ou utilizo a função <code>right_join</code>.</p>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="joins.html#cb37-1" tabindex="-1"></a><span class="fu">right_join</span>(x, y, <span class="at">by =</span> <span class="st">&quot;chave&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="joins.html#cb40-1" tabindex="-1"></a><span class="fu">right_join</span>(x, y, <span class="at">by =</span> <span class="st">&quot;chave&quot;</span>)</span></code></pre></div>
 <p>Agora, considerando apenas o que tem em comum nas duas tabelas e depois o juntando todas as possibilidades.</p>
-<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="joins.html#cb38-1" tabindex="-1"></a><span class="fu">inner_join</span>(x, y)</span>
-<span id="cb38-2"><a href="joins.html#cb38-2" tabindex="-1"></a></span>
-<span id="cb38-3"><a href="joins.html#cb38-3" tabindex="-1"></a><span class="fu">full_join</span>(x, y)</span></code></pre></div>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="joins.html#cb41-1" tabindex="-1"></a><span class="fu">inner_join</span>(x, y)</span></code></pre></div>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="joins.html#cb42-1" tabindex="-1"></a><span class="fu">full_join</span>(x, y)</span></code></pre></div>
 <p>Vimos até agora os ‘joins’ que movimentam colunas de uma tabela para outra, mas há os ‘joins’ que servem para filtrar linhas na tabela de referencia e não movimentam informações entre as tabelas. O <code>semi_join</code> mantém os registros com base na coluna <code>chave</code> que existem nas duas tabelas. Já o <code>anti_join</code> mantém o registro que existe na tabela 1, mas não na tabela 2.</p>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="joins.html#cb39-1" tabindex="-1"></a><span class="fu">semi_join</span>(x, y)</span>
-<span id="cb39-2"><a href="joins.html#cb39-2" tabindex="-1"></a></span>
-<span id="cb39-3"><a href="joins.html#cb39-3" tabindex="-1"></a><span class="fu">anti_join</span>(x, y)</span></code></pre></div>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="joins.html#cb43-1" tabindex="-1"></a><span class="fu">semi_join</span>(x, y)</span></code></pre></div>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="joins.html#cb44-1" tabindex="-1"></a><span class="fu">anti_join</span>(x, y)</span></code></pre></div>
 
 </div>
 

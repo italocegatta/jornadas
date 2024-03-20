@@ -55,7 +55,7 @@ Iremos criar gráficos em camadas. A estratificação de elementos é talvez o a
 
 O primeiro argumento da função  `ggplot()` é um `data.frame`, e seu segundo argumento é `aes()`. Você nunca vai usar `aes()` em qualquer outro contexto, exceto dentro de outras funções do ggplot2, por isso talvez seja melhor não pensar em `aes()` como função individual, mas sim como uma forma especial de definir as dimensões dos gráficos.
 
-```{r}
+```{r, message=FALSE, warning=FALSE}
 library(tidyverse)
 library(readxl)
 
